@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -18,7 +20,9 @@ namespace CARGAR_EXCEL
         {
             if (!IsPostBack)
             {
+                
                 cargaFacturas();
+                
             }
 
             if (hdFiltrar2.Value == "entra")
@@ -27,8 +31,19 @@ namespace CARGAR_EXCEL
                 hdFiltrar2.Value = "";
             }
         }
+        //public void spinner()
+        //{
+        //    var t = Task.Run(async delegate
+        //    {
+        //        await Task.Delay(110000);
+        //        return divLoading.Visible = false;
+        //    });
+        //    t.Wait();
+            
+        //}
         private void cargaFacturas()
         {
+            
             DataTable cargaStops = facLabControler.facturas();
             //cargaStops.AsDataView().RowFilter("");
             int numCells = 3;
@@ -44,10 +59,11 @@ namespace CARGAR_EXCEL
                         HyperLink hp1 = new HyperLink();
                         hp1.ID = "hpIndex" + rownum.ToString();
                         hp1.Text = "<button type='button' class='btn btn-primary'>" + row[i].ToString() + "</button>";
-                        hp1.NavigateUrl = "DetallesFacturas.aspx?factura=" + row[i].ToString();
+                        hp1.NavigateUrl = "DetallesComplemento.aspx?factura=" + row[i].ToString();
                         TableCell c = new TableCell();
                         c.Controls.Add(hp1);
                         r.Cells.Add(c);
+                        
                     }
                     else
                     {
@@ -62,7 +78,9 @@ namespace CARGAR_EXCEL
 
                 tablaStops.Rows.Add(r);
                 rownum++;
+                
             }
+            
         }
         private void cargaFacturasFiltradas()
         {
@@ -86,8 +104,8 @@ namespace CARGAR_EXCEL
                     {
                         HyperLink hp1 = new HyperLink();
                         hp1.ID = "hpIndex" + rownum.ToString();
-                        hp1.Text = row[i].ToString();
-                        hp1.NavigateUrl = "DetallesFacturas.aspx?factura=" + row[i].ToString();
+                        hp1.Text = "<button type='button' class='btn btn-primary'>" + row[i].ToString() + "</button>";
+                        hp1.NavigateUrl = "DetallesComplemento.aspx?factura=" + row[i].ToString();
                         TableCell c = new TableCell();
                         c.Controls.Add(hp1);
                         r.Cells.Add(c);

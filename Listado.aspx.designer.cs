@@ -33,13 +33,13 @@ namespace CARGAR_EXCEL
         protected global::System.Web.UI.WebControls.Label lblUserDetails;
 
         /// <summary>
-        /// Control HyperLink1.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// Control ScriptManager1.
@@ -112,5 +112,14 @@ namespace CARGAR_EXCEL
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Table tablaStops;
+
+        /// <summary>
+        /// Control divLoading.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoading;
     }
 }

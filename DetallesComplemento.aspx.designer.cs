@@ -11,7 +11,7 @@ namespace CARGAR_EXCEL
 {
 
 
-    public partial class DetallesFacturas
+    public partial class DetallesComplemento
     {
 
         /// <summary>

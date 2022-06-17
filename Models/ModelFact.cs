@@ -13,7 +13,7 @@ namespace CARGAR_EXCEL.Models
         public string motivo { get; set; }
         public string status { get; set; }
         public string xmlDownload { get; set; }
-        public int folio { get; set; }
+        public string folio { get; set; }
         public string serie { get; set; }
         public string rfc { get; set; }
        

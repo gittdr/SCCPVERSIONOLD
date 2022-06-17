@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesFacturas.aspx.cs" Inherits="CARGAR_EXCEL.DetallesFacturas" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesComplemento.aspx.cs" Inherits="CARGAR_EXCEL.DetallesComplemento" %>
 
 <!DOCTYPE html>
 
@@ -18,13 +18,13 @@
     <script src="https://kit.fontawesome.com/789a3ce2b4.js" crossorigin="anonymous"></script>
     <style>
         #divLoading {
-    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    -moz-animation: cssAnimation 0s ease-in 2s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 2s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    -o-animation: cssAnimation 0s ease-in 2s forwards;
     /* Opera */
-    animation: cssAnimation 0s ease-in 5s forwards;
+    animation: cssAnimation 0s ease-in 2s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }

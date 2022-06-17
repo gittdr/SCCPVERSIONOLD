@@ -129,10 +129,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="DetallesComplemento.aspx" />
     <Content Include="DetallesFacturas.aspx" />
     <Content Include="GeneradorCp.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\icon.png" />
+    <Content Include="images\loading.gif" />
     <Content Include="images\login.png" />
     <Content Include="images\logo.png" />
     <Content Include="Listado.aspx" />
@@ -147,6 +150,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\facLabController.cs" />
     <Compile Include="Controllers\FacCpController.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallesComplemento.aspx.cs">
+      <DependentUpon>DetallesComplemento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallesComplemento.aspx.designer.cs">
+      <DependentUpon>DetallesComplemento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DetallesFacturas.aspx.cs">
       <DependentUpon>DetallesFacturas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

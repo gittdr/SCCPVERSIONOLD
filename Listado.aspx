@@ -16,6 +16,7 @@
         <link rel="stylesheet" href='https://cdn.jsdelivr.net/sweetalert2/6.3.8/sweetalert2.min.css'
             media="screen" />
     <script src="https://kit.fontawesome.com/789a3ce2b4.js" crossorigin="anonymous"></script>
+   
     <style>
         .mitabla {
             width :100%
@@ -97,6 +98,32 @@ nav li#user-info > span:after{
   background: #fff;
   border-radius: 10px;
   padding: 30px;
+
+}
+#divLoading {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
 }
     </style>
 </head>
@@ -118,10 +145,10 @@ nav li#user-info > span:after{
     </ul>
       <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i style="color:green !important" class="fas fa-user"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> | </a>
+              <i style="color:green !important" class="fas fa-list"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> |
             </li>
-            <li class="nav-item active">
-              <asp:HyperLink ID="HyperLink1" CssClass="nav-link" runat="server" NavegateUrl="Salir.aspx" NavigateUrl="~/Salir.aspx">Cerrar Sesión</asp:HyperLink>
+            <li class="nav-item active text-white">
+              <asp:Label Style="color:white" ID="Label1" runat="server" Text=""></asp:Label> Listado
             </li>
           </ul>
      
@@ -133,7 +160,7 @@ nav li#user-info > span:after{
         <div class="container-fluid mt-4">
              <div class="card">
                   <div class="card-header">
-                    Complemento Pago - 
+                    Complemento Pago 
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -204,12 +231,13 @@ nav li#user-info > span:after{
                       <hr />
                   
                   </div>
+                 
                 </div>
-            
+            <div runat="server" id="divLoading" style="background-image:url(images/loading.gif);position:absolute;top:0;left:0;width:100%;height:100%;background-repeat:no-repeat;background-position:center;z-index:2000"></div>
         </div>
     </form>
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 10vh;">
+    margin-top: 100vh;">
     <div class="container text-center text-white">
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
     </div>

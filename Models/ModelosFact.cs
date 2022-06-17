@@ -9,7 +9,15 @@ using System.Globalization;
 namespace CARGAR_EXCEL.Models
 {
     public class ModelosFact
+
     {
+         public string uuid { get; set; }
+        public string motivo { get; set; }
+        public string status { get; set; }
+        public string xmlDownload { get; set; }
+        public string folio { get; set; }
+        public string serie { get; set; }
+        public string rfc { get; set; }
         private const string facturasListadop = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
         private const string facturas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by CONVERT(INT, folio) ASC";
         private const string facturasEnviadas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
@@ -156,6 +164,58 @@ namespace CARGAR_EXCEL.Models
                 }
             }
             return dataTable;
+        }
+        public DataTable getDatosCPAGDOCTRL(string identificador, string foliocpag)
+        {
+
+
+            DataTable dataTable3 = new DataTable();
+            //NOS CONECTAMOS CON LA BASE DE DATOS
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=DYNAMICS; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("usp_ccpp", cn))
+                    {
+                        //Le indico que es del itpo procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //Esta linea define un parametro
+                        cmd.Parameters.AddWithValue("@identificador", identificador);
+                        cmd.Parameters.AddWithValue("@foliocpag", foliocpag);
+                        //Ejecutamos el procedimiento
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                        {
+                            try
+                            {
+
+                                sqlDataAdapter.Fill(dataTable3);
+                                cn.Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                cn.Close();
+                                string message = ex.Message;
+
+                            }
+
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+
+                    cn.Close();
+                    string message = ex.Message;
+
+                }
+            }
+
+            return dataTable3;
+
         }
         public DataTable getDatosFacturas(string fact)
         {
