@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
     <style>
         @font-face {
 		font-family: 'Sucrose Bold Two';
@@ -72,10 +75,13 @@ main {
 <main>
 	 <form id="form1" runat="server">
         <div>
-			<p>
-				<asp:HyperLink ID="HyperLink1" CssClass="btn btn-warning btn-lg btn-block mt-5 shadow-lg text-white" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx">Ingresar</asp:HyperLink>
+			
+			<div style="-webkit-box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72); box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72);" class="rounded">
+				<p>
+				<asp:HyperLink ID="HyperLink1" CssClass="btn btn-warning btn-lg btn-block mt-5 shadow-lg" Style="font-family: 'Open Sans', sans-serif;" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
 	  
-          </p>
+               </p>
+			</div>
         </div>
     </form>
   
