@@ -18,6 +18,7 @@ namespace CARGAR_EXCEL.Models
         public string folio { get; set; }
         public string serie { get; set; }
         public string rfc { get; set; }
+        public string ord_hdrnumber { get; set; }
         private const string facturasListadop = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
         private const string facturas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by CONVERT(INT, folio) ASC";
         private const string facturasEnviadas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
@@ -217,6 +218,59 @@ namespace CARGAR_EXCEL.Models
             return dataTable3;
 
         }
+
+        public DataTable getDatosSegmentos(string orden)
+        {
+
+
+            DataTable dataTable3 = new DataTable();
+            //NOS CONECTAMOS CON LA BASE DE DATOS
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("usp_obtener_segmento_JC", cn))
+                    {
+                        //Le indico que es del itpo procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //Esta linea define un parametro
+                        cmd.Parameters.AddWithValue("@orden", orden);
+                        
+                        //Ejecutamos el procedimiento
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                        {
+                            try
+                            {
+
+                                sqlDataAdapter.Fill(dataTable3);
+                                cn.Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                cn.Close();
+                                string message = ex.Message;
+
+                            }
+
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+
+                    cn.Close();
+                    string message = ex.Message;
+
+                }
+            }
+
+            return dataTable3;
+
+        }
         public DataTable getDatosFacturas(string fact)
         {
             DataTable dataTable = new DataTable();
@@ -279,6 +333,32 @@ namespace CARGAR_EXCEL.Models
             using (SqlConnection connection = new SqlConnection(cadena))
             {
                 using (SqlCommand selectCommand = new SqlCommand("select invoice as folio from [172.24.16.112].[TMWSuite].[dbo].VISTA_Fe_generadas where nmaster = @identificador", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTable;
+        }
+        public DataTable getDatosInvoice(string identificador)
+        {
+            DataTable dataTable = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("select ord_hdrnumber from invoiceheader where ivh_hdrnumber = @identificador", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);

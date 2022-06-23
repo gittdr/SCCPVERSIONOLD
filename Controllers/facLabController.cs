@@ -52,6 +52,10 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.getDatosCPAGDOC(identificador);
         }
+        public DataTable getDatosInvoice(string identificador)
+        {
+            return this.modelFact.getDatosInvoice(identificador);
+        }
 
         public DataTable getDatosMaster(string identificador)
         {
@@ -61,6 +65,10 @@ namespace CARGAR_EXCEL.Controllers
         public void insertaFactura(string fact, string fecha)
         {
             this.modelFact.insertaFactura(fact, fecha);
+        }
+        public DataTable getDatosSegmentos(string orden)
+        {
+            return this.modelFact.getDatosSegmentos(orden);
         }
     }
 }

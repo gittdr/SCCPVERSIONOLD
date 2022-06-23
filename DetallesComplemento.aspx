@@ -63,11 +63,11 @@
                 </ul>
                   <ul class="navbar-nav">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#"><i style="color:green !important" class="fas fa-user"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> | </a>
-                        </li>
-                        <li class="nav-item active text-white">
-                          <asp:Label Style="color:white" ID="Label1" runat="server" Text=""></asp:Label> Detalles de la factura
-                        </li>
+              <i style="color:green !important" class="fas fa-list"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> |
+            </li>
+            <li class="nav-item active text-white">
+              <asp:Label Style="color:white" ID="Label1" runat="server" Text=""></asp:Label> Detalles
+            </li>
                       </ul>
      
       

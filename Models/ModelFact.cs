@@ -16,7 +16,9 @@ namespace CARGAR_EXCEL.Models
         public string folio { get; set; }
         public string serie { get; set; }
         public string rfc { get; set; }
-       
+        public string ord_hdrnumber { get; set; }
+
+
 
         public class User
         {
@@ -225,7 +227,7 @@ namespace CARGAR_EXCEL.Models
             string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
             using (SqlConnection connection = new SqlConnection(cadena))
             {
-                using (SqlCommand selectCommand = new SqlCommand("select TRY_CONVERT(INT, REPLACE(Folio, '-','')) as Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by Folio DESC", connection))
+                using (SqlCommand selectCommand = new SqlCommand("select TOP 50 TRY_CONVERT(INT, REPLACE(Folio, '-','')) as Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor, RFC from vista_fe_copago WHERE RFC != '' order by Folio DESC", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
@@ -243,6 +245,84 @@ namespace CARGAR_EXCEL.Models
                 }
             }
             return dataTablee;
+        }
+        public DataTable getDatosInvoice(string identificador)
+        {
+            DataTable dataTable = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("select ord_hdrnumber from invoiceheader where ivh_hdrnumber = @identificador", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTable;
+        }
+        public DataTable getDatosSegmentos(string orden)
+        {
+
+
+            DataTable dataTable3 = new DataTable();
+            //NOS CONECTAMOS CON LA BASE DE DATOS
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("usp_obtener_segmento_JC", cn))
+                    {
+                        //Le indico que es del itpo procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //Esta linea define un parametro
+                        cmd.Parameters.AddWithValue("@orden", orden);
+
+                        //Ejecutamos el procedimiento
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                        {
+                            try
+                            {
+
+                                sqlDataAdapter.Fill(dataTable3);
+                                cn.Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                cn.Close();
+                                string message = ex.Message;
+
+                            }
+
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+
+                    cn.Close();
+                    string message = ex.Message;
+
+                }
+            }
+
+            return dataTable3;
+
         }
 
     }
