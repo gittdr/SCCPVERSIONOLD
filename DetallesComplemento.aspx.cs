@@ -34,6 +34,7 @@ namespace CARGAR_EXCEL
 
         public string serie;
         public decimal importePagos = 0;
+        public decimal valorunitarios = 0;
 
         public decimal importePagos2 = 0;
         public decimal importePagos3 = 0;
@@ -269,6 +270,8 @@ namespace CARGAR_EXCEL
                                         foreach (DataRow rowsrctp in dataSet1.Tables["Pago"].Rows)
                                         {
                                             formadepago = rowsrctp["FormaDePagoP"].ToString();
+                                            if (formadepago == null) { formadepago = "99"; }
+                                            else { formadepago = rowsrctp["FormaDePagoP"].ToString(); }
                                             foreach (DataRow rowsrctpr in dataSet1.Tables["DoctoRelacionado"].Rows)
                                             {
                                                 folio = rowsrctpr["Folio"].ToString();
@@ -340,7 +343,7 @@ namespace CARGAR_EXCEL
                                                           + "|" + nparcialidades                            //9-NumeroDeParcialidad
                                                           + "|" + interiorsaldoanterior                                    //10-ImporteSaldoAnterior
                                                           + "|" + ipagado                                    //11-ImportePagado                                                  
-                                                          + "|" + "0"                                            //12 ImporteSaldoInsoluto
+                                                          + "|" + isaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                           + "| \r\n");
                                                     }
                                                     else
@@ -444,7 +447,7 @@ namespace CARGAR_EXCEL
                                     }
                                 }
                             }
-                            generaTXT();
+                           
                         }// FIN DEL IF SEPARADOS 8
                         else
                         {
@@ -544,6 +547,20 @@ namespace CARGAR_EXCEL
                                                                 {
                                                                     foreach (DataRow rowsrc in (InternalDataCollectionBase)dataSet1.Tables["Concepto"].Rows)
                                                                     {
+                                                                        importe = rowsrc["Importe"].ToString();
+                                                                        valorunitario = rowsrc["ValorUnitario"].ToString();
+                                                                        try
+                                                                        {
+                                                                            importePagos = importePagos + Convert.ToDecimal(importe);
+                                                                            importe = importePagos.ToString();
+
+                                                                            valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
+                                                                            valorunitario = valorunitarios.ToString();
+                                                                        }
+                                                                        catch (Exception ex)
+                                                                        {
+                                                                            string errors = ex.Message;
+                                                                        }
                                                                         //importe = rowsrc["Importe"].ToString();
                                                                         //valorunitario = rowsrc["ValorUnitario"].ToString();
                                                                         descripcion = rowsrc["Descripcion"].ToString();
@@ -559,6 +576,8 @@ namespace CARGAR_EXCEL
                                                                     total = rowCC["Total"].ToString();
                                                                     monedascpadgoc = rowCC["Moneda"].ToString();
                                                                     formadepago = rowCC["FormaPago"].ToString();
+                                                                    if (formadepago == null) { formadepago = "99"; }
+                                                                    else { formadepago = rowCC["FormaPago"].ToString(); }
                                                                     string Ccertificado = rowCC["Certificado"].ToString();
                                                                     string Cnocertificado = rowCC["NoCertificado"].ToString();
                                                                     string Csello = rowCC["Sello"].ToString();
@@ -605,7 +624,7 @@ namespace CARGAR_EXCEL
                                                                       + "|" + numerodeparcialidad                            //9-NumeroDeParcialidad
                                                                       + "|" + total                                    //10-ImporteSaldoAnterior
                                                                       + "|" + total                                   //11-ImportePagado                                                  
-                                                                      + "|" + "0"                                            //12 ImporteSaldoInsoluto
+                                                                      + "|" + importesaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                                       + "| \r\n");
                                                                 }
                                                                 else
@@ -703,6 +722,18 @@ namespace CARGAR_EXCEL
                                                                 {
                                                                     importe = rowsrc["Importe"].ToString();
                                                                     valorunitario = rowsrc["ValorUnitario"].ToString();
+                                                                    try
+                                                                    {
+                                                                        importePagos = importePagos + Convert.ToDecimal(importe);
+                                                                        importe = importePagos.ToString();
+
+                                                                        valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
+                                                                        valorunitario = valorunitarios.ToString();
+                                                                    }
+                                                                    catch (Exception ex)
+                                                                    {
+                                                                        string errors = ex.Message;
+                                                                    }
                                                                     descripcion = rowsrc["Descripcion"].ToString();
                                                                     claveunidad = rowsrc["ClaveUnidad"].ToString();
                                                                     cantidad = rowsrc["Cantidad"].ToString();
@@ -716,6 +747,8 @@ namespace CARGAR_EXCEL
                                                                 total = rowCC["Total"].ToString();
                                                                 monedascpadgoc = rowCC["Moneda"].ToString();
                                                                 formadepago = rowCC["FormaPago"].ToString();
+                                                                if (formadepago == null) { formadepago = "99"; }
+                                                                else { formadepago = rowCC["FormaPago"].ToString(); }
                                                                 string Ccertificado = rowCC["Certificado"].ToString();
                                                                 string Cnocertificado = rowCC["NoCertificado"].ToString();
                                                                 string Csello = rowCC["Sello"].ToString();
@@ -762,7 +795,7 @@ namespace CARGAR_EXCEL
                                                                   + "|" + numerodeparcialidad.Trim()                            //9-NumeroDeParcialidad
                                                                   + "|" + total.Trim()                                    //10-ImporteSaldoAnterior
                                                                   + "|" + total.Trim()                                  //11-ImportePagado                                                  
-                                                                  + "|" + "0"                                            //12 ImporteSaldoInsoluto
+                                                                  + "|" + importesaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                                   + "| \r\n");
                                                             }
                                                             else
@@ -796,7 +829,7 @@ namespace CARGAR_EXCEL
                                                         //AQUI FALTA AGREGAR LO QUE TIENE EL XML Y FORMAR EL TXT
                                                     }
                                                 }
-                                                generaTXT();
+                                             
                                             }
                                             else if (uid == "" && serieinvoice == "TDRA")
                                             {
@@ -894,8 +927,21 @@ namespace CARGAR_EXCEL
                                                                         {
                                                                             foreach (DataRow rowsrc in (InternalDataCollectionBase)dataSet1.Tables["Concepto"].Rows)
                                                                             {
-                                                                                //importe = rowsrc["Importe"].ToString();
-                                                                                //valorunitario = rowsrc["ValorUnitario"].ToString();
+                                                                                importe = rowsrc["Importe"].ToString();
+                                                                                valorunitario = rowsrc["ValorUnitario"].ToString();
+                                                                                try
+                                                                                {
+                                                                                    importePagos = importePagos + Convert.ToDecimal(importe);
+                                                                                    importe = importePagos.ToString();
+
+                                                                                    valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
+                                                                                    valorunitario = valorunitarios.ToString();
+                                                                                }
+                                                                                catch (Exception ex)
+                                                                                {
+                                                                                    string errors = ex.Message;
+                                                                                }
+                                                                                
                                                                                 descripcion = rowsrc["Descripcion"].ToString();
                                                                                 claveunidad = rowsrc["ClaveUnidad"].ToString();
                                                                                 cantidad = rowsrc["Cantidad"].ToString();
@@ -909,6 +955,8 @@ namespace CARGAR_EXCEL
                                                                             total = rowCC["Total"].ToString();
                                                                             monedascpadgoc = rowCC["Moneda"].ToString();
                                                                             formadepago = rowCC["FormaPago"].ToString();
+                                                                            if (formadepago == null) { formadepago = "99"; }
+                                                                            else { formadepago = rowCC["FormaPago"].ToString(); }
                                                                             string Ccertificado = rowCC["Certificado"].ToString();
                                                                             string Cnocertificado = rowCC["NoCertificado"].ToString();
                                                                             string Csello = rowCC["Sello"].ToString();
@@ -955,7 +1003,7 @@ namespace CARGAR_EXCEL
                                                                               + "|" + numerodeparcialidad.Trim()                          //9-NumeroDeParcialidad
                                                                               + "|" + total.Trim()                                  //10-ImporteSaldoAnterior
                                                                               + "|" + total.Trim()                                  //11-ImportePagado                                                  
-                                                                              + "|" + "0"                                            //12 ImporteSaldoInsoluto
+                                                                              + "|" + importesaldoinsoluto                                           //12 ImporteSaldoInsoluto
                                                                               + "| \r\n");
                                                                         }
                                                                         else
