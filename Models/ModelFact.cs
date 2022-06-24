@@ -227,7 +227,7 @@ namespace CARGAR_EXCEL.Models
             string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
             using (SqlConnection connection = new SqlConnection(cadena))
             {
-                using (SqlCommand selectCommand = new SqlCommand("select TOP 50 TRY_CONVERT(INT, REPLACE(Folio, '-','')) as Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor, RFC from vista_fe_copago WHERE RFC != '' order by Folio DESC", connection))
+                using (SqlCommand selectCommand = new SqlCommand("select DISTINCT TOP 50 TRY_CONVERT(INT, REPLACE(Folio, '-','')) as Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor, RFC from vista_fe_copago WHERE RFC != '' order by Folio DESC", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))

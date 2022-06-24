@@ -34,11 +34,13 @@ namespace CARGAR_EXCEL
 
         public string serie;
         public decimal importePagos = 0;
-        public decimal valorunitarios = 0;
-
         public decimal importePagos2 = 0;
         public decimal importePagos3 = 0;
         public decimal importePagos4 = 0;
+        public decimal importePagos5 = 0;
+        public decimal valorunitarios = 0;
+
+       
         public double ivaa = 0.16;
         public double isrr = 0.04;
         public decimal totalIva = 0;
@@ -62,7 +64,7 @@ namespace CARGAR_EXCEL
             imgFDesde.Visible = false;
             imgFHasta.Visible = false;
             lblFact.Text = Request.QueryString["factura"];
-            //lblFact.Text = "40759";
+           //lblFact.Text = "40749";
             //foliot = Request.QueryString["factura"];
             if (IsPostBack)
             {
@@ -552,10 +554,10 @@ namespace CARGAR_EXCEL
                                                                         try
                                                                         {
                                                                             importePagos = importePagos + Convert.ToDecimal(importe);
-                                                                            importe = importePagos.ToString();
+                                                                            importe = importePagos.ToString("F");
 
                                                                             valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
-                                                                            valorunitario = valorunitarios.ToString();
+                                                                            valorunitario = valorunitarios.ToString("F");
                                                                         }
                                                                         catch (Exception ex)
                                                                         {
@@ -603,8 +605,8 @@ namespace CARGAR_EXCEL
                                                                 //FolioUUIDTxt.Text += identpag;
                                                                 try
                                                                 {
-                                                                    importePagos = importePagos + Convert.ToDecimal(total);
-                                                                    txtTotal.Text = importePagos.ToString();
+                                                                    importePagos2 = importePagos2 + Convert.ToDecimal(total);
+                                                                    txtTotal.Text = importePagos2.ToString();
                                                                 }
                                                                 catch (Exception ex)
                                                                 {
@@ -714,7 +716,7 @@ namespace CARGAR_EXCEL
                                                             MetdodoPago = "PUE";
                                                             contadorPUE++;
                                                         }
-                                                        if (MetdodoPago == "PPD")
+                                                         if (MetdodoPago == "PPD")
                                                         {
                                                             foreach (DataRow rowsr in (InternalDataCollectionBase)dataSet1.Tables["Conceptos"].Rows)
                                                             {
@@ -725,10 +727,10 @@ namespace CARGAR_EXCEL
                                                                     try
                                                                     {
                                                                         importePagos = importePagos + Convert.ToDecimal(importe);
-                                                                        importe = importePagos.ToString();
+                                                                        importe = importePagos.ToString("F");
 
                                                                         valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
-                                                                        valorunitario = valorunitarios.ToString();
+                                                                        valorunitario = valorunitarios.ToString("F");
                                                                     }
                                                                     catch (Exception ex)
                                                                     {
@@ -775,7 +777,7 @@ namespace CARGAR_EXCEL
                                                             try
                                                             {
                                                                 importePagos = importePagos + Convert.ToDecimal(total);
-                                                                txtTotal.Text = importePagos.ToString();
+                                                                txtTotal.Text = importePagos.ToString("F");
                                                             }
                                                             catch (Exception ex)
                                                             {
@@ -818,14 +820,14 @@ namespace CARGAR_EXCEL
 
                                                             
                                                         }
-                                                        else
-                                                        {
-                                                            string msg = "Error: Los folios relacionados no existen en el canal de Tralix";
-                                                            formularioT.Visible = false;
-                                                            Div1.Visible = true;
-                                                            ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
+                                                        //else
+                                                        //{
+                                                        //    string msg = "Error: Los folios relacionados no existen en el canal de Tralix";
+                                                        //    formularioT.Visible = false;
+                                                        //    Div1.Visible = true;
+                                                        //    ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
 
-                                                        }
+                                                        //}
                                                         //AQUI FALTA AGREGAR LO QUE TIENE EL XML Y FORMAR EL TXT
                                                     }
                                                 }
@@ -931,11 +933,11 @@ namespace CARGAR_EXCEL
                                                                                 valorunitario = rowsrc["ValorUnitario"].ToString();
                                                                                 try
                                                                                 {
-                                                                                    importePagos = importePagos + Convert.ToDecimal(importe);
-                                                                                    importe = importePagos.ToString();
+                                                                                    importePagos3 = importePagos3 + Convert.ToDecimal(importe);
+                                                                                    importe = importePagos3.ToString("F");
 
                                                                                     valorunitarios = valorunitarios + Convert.ToDecimal(valorunitario);
-                                                                                    valorunitario = valorunitarios.ToString();
+                                                                                    valorunitario = valorunitarios.ToString("F");
                                                                                 }
                                                                                 catch (Exception ex)
                                                                                 {
@@ -982,8 +984,8 @@ namespace CARGAR_EXCEL
                                                                         //FolioUUIDTxt.Text += identpag;
                                                                         try
                                                                         {
-                                                                            importePagos = importePagos + Convert.ToDecimal(basecalculado);
-                                                                            txtTotal.Text = importePagos.ToString();
+                                                                            importePagos4 = importePagos4 + Convert.ToDecimal(total);
+                                                                            txtTotal.Text = importePagos4.ToString();
                                                                         }
                                                                         catch (Exception ex)
                                                                         {
@@ -1044,7 +1046,7 @@ namespace CARGAR_EXCEL
                                      }
                                 }
                             }
-                            generaTXT();
+                           
                             //AQUI TERMINA GP ---------------------
 
 
@@ -1366,51 +1368,57 @@ namespace CARGAR_EXCEL
 
                             //}
 
-                            if (contadorPPD == 0 && contadorPUE > 0)
-                            {
-                                string msg = "¡La factura es PUE!, es libre de todo PPD";
-
-                                Div1.Visible = false ;
-                                ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'La factura es PUE ', 'success');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
-                                //ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('La factura es PUE!! y es libre de todo PPD', 'success');", true);
-                                //PopupMsg.Message1 = "La factura es PUE!! y es libre de todo PPD";
-                                //PopupMsg.ShowPopUp(0);
-                            }
+                            
                         }
                     }
-                   
-                    
+
+
 
                     //AQUI VOY -------------------------------
 
 
+                    if (contadorPPD == 0 && contadorPUE > 0)
+                    {
+                        string msg = "¡La factura es PUE!, es libre de todo PPD";
 
+                        Div1.Visible = false;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'La factura es PUE ', 'success');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('La factura es PUE!! y es libre de todo PPD', 'success');", true);
+                        //PopupMsg.Message1 = "La factura es PUE!! y es libre de todo PPD";
+                        //PopupMsg.ShowPopUp(0);
+                    }
+                    else
+                    {
+                        var uuidpagadas2 = uuidpagadas;
+
+                        if (uuidpagadas2 == null)
+                        {
+                            string msg = "Error: El o los folios relacionados no existen en el canal de Tralix";
+                            formularioT.Visible = false;
+                            Div1.Visible = true;
+                            ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
+                        }
+                        else
+                        {
+                            txtFechaIniOP.Text = uuidpagadas;
+                            FolioUUIDTxt.Text = Foliosrelacionados;
+
+                            txtFechaHasta.Text = "Complemento Pago";
+
+
+                            txtFechaDesde.Text = "Complemento Pago";
+
+
+                            txtTipoCobro.Text = "Complemento Pago";
+                            generaTXT();
+                        }
+                    }
 
 
                     //OTROS-------------------------------------------------------------------------------------------------------------------------
 
                     // creamos el FolioUUID
-                    var uuidpagadas2 =uuidpagadas;
-
-                    if (uuidpagadas2 == null)
-                    {
-                        string msg = "Error: El o los folios relacionados no existen en el canal de Tralix";
-                        formularioT.Visible = false;
-                        Div1.Visible = true;
-                        ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
-                    }else
-                    {
-                        txtFechaIniOP.Text = uuidpagadas;
-                        FolioUUIDTxt.Text = Foliosrelacionados;
-
-                        txtFechaHasta.Text = "Complemento Pago";
-
-
-                        txtFechaDesde.Text = "Complemento Pago";
-
-
-                        txtTipoCobro.Text = "Complemento Pago";
-                    }
+                    
                    
 
                 }

@@ -78,7 +78,7 @@ main {
 			
 			<div style="-webkit-box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72); box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72);" class="rounded">
 				<p>
-				<asp:HyperLink ID="HyperLink1" CssClass="btn btn-warning btn-lg btn-block mt-5 shadow-lg" Style="font-family: 'Open Sans', sans-serif;" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
+				<asp:HyperLink ID="HyperLink1" CssClass="btn btn-primary btn-lg btn-block mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif; padding:25px" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
 	  
                </p>
 			</div>
