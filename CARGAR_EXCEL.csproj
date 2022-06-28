@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="Inicial.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetallesComplemento.aspx" />
     <Content Include="DetallesFacturas.aspx" />
@@ -150,6 +151,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\facLabController.cs" />
     <Compile Include="Controllers\FacCpController.cs" />
+    <Compile Include="Inicial.aspx.cs">
+      <DependentUpon>Inicial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicial.aspx.designer.cs">
+      <DependentUpon>Inicial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

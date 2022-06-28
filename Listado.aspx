@@ -101,13 +101,13 @@ nav li#user-info > span:after{
 
 }
 #divLoading {
-    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    -moz-animation: cssAnimation 0s ease-in 3s forwards;
     /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    -webkit-animation: cssAnimation 0s ease-in 3s forwards;
     /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    -o-animation: cssAnimation 0s ease-in 3s forwards;
     /* Opera */
-    animation: cssAnimation 0s ease-in 5s forwards;
+    animation: cssAnimation 0s ease-in 3s forwards;
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
 }
@@ -144,11 +144,10 @@ nav li#user-info > span:after{
       </li>
     </ul>
       <ul class="navbar-nav">
-            <li class="nav-item active">
-              <i style="color:green !important" class="fas fa-list"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> |
-            </li>
+            
             <li class="nav-item active text-white">
-              <asp:Label Style="color:white" ID="Label1" runat="server" Text=""></asp:Label> Listado
+                <asp:HyperLink ID="HyperLink2" CssClass="btn btn-outline-success text-white"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"><b><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</b></asp:HyperLink>
+              
             </li>
           </ul>
      

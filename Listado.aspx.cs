@@ -58,7 +58,7 @@ namespace CARGAR_EXCEL
         //                    foreach (var item in separados8)
         //                    {
 
-        private void okTralix()
+        private async Task okTralix()
         {
             DataTable cargaStops = facLabControler.facturas();
             int numCells = 3;
@@ -68,9 +68,9 @@ namespace CARGAR_EXCEL
                 string folio = item["Folio"].ToString();
                 var request28 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + folio);
                 var response28 = (HttpWebResponse)request28.GetResponse();
-                var responseString28 = new StreamReader(response28.GetResponseStream()).ReadToEnd();
+                var responseString28 = new StreamReader(response28.GetResponseStream()).ReadToEndAsync();
 
-                List<ModelFact> separados8 = JsonConvert.DeserializeObject<List<ModelFact>>(responseString28);
+                List<ModelFact> separados8 = JsonConvert.DeserializeObject<List<ModelFact>>(await responseString28);
                 if (separados8 != null)
                 {
                     TableRow r = new TableRow();

@@ -62,11 +62,9 @@
                   </li>
                 </ul>
                   <ul class="navbar-nav">
-                        <li class="nav-item active">
-              <i style="color:green !important" class="fas fa-list"></i> <asp:Label ID="lblUserDetails" runat="server" Text=""></asp:Label> |
-            </li>
-            <li class="nav-item active text-white">
-              <asp:Label Style="color:white" ID="Label1" runat="server" Text=""></asp:Label> Detalles
+                        <li class="nav-item active text-white">
+                <asp:HyperLink ID="HyperLink2" CssClass="btn btn-outline-success text-white"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</b></asp:HyperLink>
+              
             </li>
                       </ul>
      

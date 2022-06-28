@@ -38,7 +38,7 @@ header img {
 	right: 0;
 	width: 45.8%;
 }
-header h1 { 
+header h1{ 
 	position: fixed;
 	top: 2rem;
 	right: 2rem;
@@ -46,8 +46,10 @@ header h1 {
   line-height: .8;
   margin-top: 0;
   text-align: center;
+  font-family: 'Sucrose Bold Two';
   
 }
+
 header h1 span {
   display: block;
   font-size: 8.75vw;
@@ -70,10 +72,7 @@ main {
 <body>
     <header>
 	<h1 style="color:#ebbd15" class="shadow-lg p-3 mb-5 rounded">Complemento de <span>Pago</span></h1>
-	<%--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/mountain-range-front.png">--%>
-</header>
-<main>
-	 <form id="form1" runat="server">
+		<form id="form1" runat="server">
         <div>
 			
 			<div style="-webkit-box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72); box-shadow: 5px 5px 38px 5px rgba(0,0,0,0.72);" class="rounded">
@@ -84,11 +83,11 @@ main {
 			</div>
         </div>
     </form>
-  
-</main>
+	<%--<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/mountain-range-front.png">--%>
+</header>
+
    
-	 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 10vh;">
+	 <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;">
     <div class="container text-center text-white">
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
     </div>
