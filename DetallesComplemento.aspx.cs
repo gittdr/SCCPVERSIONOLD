@@ -67,7 +67,7 @@ namespace CARGAR_EXCEL
             imgFDesde.Visible = false;
             imgFHasta.Visible = false;
             lblFact.Text = Request.QueryString["factura"];
-            //lblFact.Text = "40805";
+            //lblFact.Text = "40801";
             //foliot = Request.QueryString["factura"];
             if (IsPostBack)
             {
@@ -257,6 +257,23 @@ namespace CARGAR_EXCEL
                                 DataSet dataSet1 = new DataSet();
                                 XmlTextReader xtr = new XmlTextReader(xDoc.OuterXml, XmlNodeType.Element, null);
                                 dataSet1.ReadXml(xtr);
+                                foreach (DataRow rowCC in (InternalDataCollectionBase)dataSet1.Tables["Comprobante"].Rows)
+                                {
+                                    lugarexpedicion = rowCC["LugarExpedicion"].ToString();
+                                    //tipocomprobante = rowCC["TipoDeComprobante"].ToString();
+                                    tipodecambiocpag = rowCC["TipoCambio"].ToString();
+                                    total = rowCC["Total"].ToString();
+                                    monedascpadgoc = rowCC["Moneda"].ToString();
+                                    formadepago = rowCC["FormaPago"].ToString();
+                                    if (formadepago == null || formadepago == "99") { formadepago = row["Formadepagocpag"].ToString(); }
+                                    else { formadepago = row["Formadepagocpag"].ToString(); }
+                                    //string Ccertificado = rowCC["Certificado"].ToString();
+                                    //string Cnocertificado = rowCC["NoCertificado"].ToString();
+                                    //string Csello = rowCC["Sello"].ToString();
+
+                                    idcomprobante = rowCC["Folio"].ToString();
+                                    serie = rowCC["Serie"].ToString();
+                                }
                                 foreach (DataRow rowsr in (InternalDataCollectionBase)dataSet1.Tables["Conceptos"].Rows)
                                 {
                                     foreach (DataRow rowsrc in (InternalDataCollectionBase)dataSet1.Tables["Concepto"].Rows)
@@ -346,7 +363,7 @@ namespace CARGAR_EXCEL
                                                           + "|" + serieinvoice                                   //4-Seriecpag
                                                           + "|" + folio                                      //5-Foliocpag
                                                           + "|" + monedascpadgoc                                  //6-Monedacpag
-                                                          + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                          + "|"                                              //7-TipoCambiocpagdpc
                                                           + "|" + MetdodoPago                             //8-MetodoDePago
                                                           + "|" + nparcialidades                            //9-NumeroDeParcialidad
                                                           + "|" + interiorsaldoanterior                                    //10-ImporteSaldoAnterior
@@ -421,7 +438,7 @@ namespace CARGAR_EXCEL
                                                           + "|" + serieinvoice                                      //4-Seriecpag
                                                           + "|" + folio                                      //5-Foliocpag
                                                           + "|" + monedascpadgoc                                  //6-Monedacpag
-                                                          + "|" + ""                                 //7-TipoCambiocpagdpc
+                                                          + "|" + tipodecambiocpag                                 //7-TipoCambiocpagdpc
                                                           + "|" + MetdodoPago                             //8-MetodoDePago
                                                           + "|" + nparcialidades                            //9-NumeroDeParcialidad
                                                           + "|" + interiorsaldoanterior                           //10-ImporteSaldoAnterior
@@ -465,12 +482,16 @@ namespace CARGAR_EXCEL
                             foreach (DataRow rowIdent in detalleIdent.Rows)
                             {
                                 identificaciondpago = rowIdent["IdentificadorDelPago"].ToString();
-                                folioscpag = rowIdent["Foliocpag"].ToString();
+                                folioscpag = Regex.Replace(rowIdent["Foliocpag"].ToString().Replace("SM-", "").Trim(), @"[A-Z]", "");
                                 importepago = rowIdent["ImportePagado"].ToString();
+                                importeSaldoAnterior = rowIdent["ImporteSaldoAnterior"].ToString();
+                                if (importeSaldoAnterior == "") { importeSaldoAnterior = "0.00"; }
+                                else { importeSaldoAnterior = rowIdent["ImporteSaldoAnterior"].ToString(); }
                                 importesaldoinsoluto = rowIdent["ImporteSaldoInsoluto"].ToString();
                                 if (importesaldoinsoluto == "") { importesaldoinsoluto = "0.00"; }
                                 else { importesaldoinsoluto = rowIdent["ImporteSaldoInsoluto"].ToString(); }
                                 numerodeparcialidad = rowIdent["NumeroDeParcialidad"].ToString();
+                                tipocambiocpag = rowIdent["TipodeCambiocpagdpc"].ToString();
                                 DataTable detalleIdentt = facLabControler.getDatosCPAGDOCTRL(identificaciondpago, folioscpag);
                                 if (detalleIdentt.Rows.Count > 0)
                                 {
@@ -629,10 +650,10 @@ namespace CARGAR_EXCEL
                                                                       + "|" + serieinvoice                                   //4-Seriecpag
                                                                       + "|" + idcomprobante                                      //5-Foliocpag
                                                                       + "|" + monedascpadgoc                                  //6-Monedacpag
-                                                                      + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                      + "|"                                          //7-TipoCambiocpagdpc
                                                                       + "|" + MetdodoPago                             //8-MetodoDePago
                                                                       + "|" + numerodeparcialidad                            //9-NumeroDeParcialidad
-                                                                      + "|" + total                                    //10-ImporteSaldoAnterior
+                                                                      + "|" + importeSaldoAnterior                                    //10-ImporteSaldoAnterior
                                                                       + "|" + total                                   //11-ImportePagado                                                  
                                                                       + "|" + importesaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                                       + "| \r\n");
@@ -646,10 +667,10 @@ namespace CARGAR_EXCEL
                                                                       + "|" + serieinvoice                                   //4-Seriecpag
                                                                       + "|" + idcomprobante                                      //5-Foliocpag
                                                                       + "|" + monedascpadgoc                                  //6-Monedacpag
-                                                                      + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                      + "|" + tipocambiocpag                                             //7-TipoCambiocpagdpc
                                                                       + "|" + MetdodoPago                             //8-MetodoDePago
                                                                       + "|" + numerodeparcialidad                            //9-NumeroDeParcialidad
-                                                                      + "|" + total                                    //10-ImporteSaldoAnterior
+                                                                      + "|" + importeSaldoAnterior                                    //10-ImporteSaldoAnterior
                                                                       + "|" + total                                   //11-ImportePagado                                                  
                                                                       + "|" + importesaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                                       + "| \r\n");
@@ -685,7 +706,7 @@ namespace CARGAR_EXCEL
                                             basecalculo = Convert.ToDecimal(iipagado);
                                             basecalculado = basecalculo.ToString("F");
 
-                                            var request281 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + k3);
+                                            var request281 = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico=" + k3 + "&rfc=" + txtRFC.Text);
                                             var response281 = (HttpWebResponse)request281.GetResponse();
                                             var responseString281 = new StreamReader(response281.GetResponseStream()).ReadToEndAsync();
 
@@ -800,10 +821,10 @@ namespace CARGAR_EXCEL
                                                                   + "|" + serieinvoice.Trim()                                  //4-Seriecpag
                                                                   + "|" + idcomprobante.Trim()                                      //5-Foliocpag
                                                                   + "|" + monedascpadgoc.Trim()                                  //6-Monedacpag
-                                                                  + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                  + "|"                                        //7-TipoCambiocpagdpc
                                                                   + "|" + MetdodoPago.Trim()                            //8-MetodoDePago
                                                                   + "|" + numerodeparcialidad.Trim()                            //9-NumeroDeParcialidad
-                                                                  + "|" + total.Trim()                                    //10-ImporteSaldoAnterior
+                                                                  + "|" + importeSaldoAnterior.Trim()                                    //10-ImporteSaldoAnterior
                                                                   + "|" + total.Trim()                                  //11-ImportePagado                                                  
                                                                   + "|" + importesaldoinsoluto                                            //12 ImporteSaldoInsoluto
                                                                   + "| \r\n");
@@ -817,10 +838,10 @@ namespace CARGAR_EXCEL
                                                                   + "|" + serieinvoice.Trim()                                  //4-Seriecpag
                                                                   + "|" + idcomprobante.Trim()                                     //5-Foliocpag
                                                                   + "|" + monedascpadgoc.Trim()                                //6-Monedacpag
-                                                                  + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                  + "|" + tipocambiocpag                                             //7-TipoCambiocpagdpc
                                                                   + "|" + MetdodoPago.Trim()                            //8-MetodoDePago
                                                                   + "|" + numerodeparcialidad.Trim()                            //9-NumeroDeParcialidad
-                                                                  + "|" + total.Trim()                                  //10-ImporteSaldoAnterior
+                                                                  + "|" + importeSaldoAnterior.Trim()                                  //10-ImporteSaldoAnterior
                                                                   + "|" + total.Trim()                                //11-ImportePagado                                                  
                                                                   + "|" + importesaldoinsoluto.Trim()                                            //12 ImporteSaldoInsoluto
                                                                   + "| \r\n");
@@ -1008,10 +1029,10 @@ namespace CARGAR_EXCEL
                                                                               + "|" + serieinvoice.Trim()                                  //4-Seriecpag
                                                                               + "|" + idcomprobante.Trim()                                    //5-Foliocpag
                                                                               + "|" + monedascpadgoc.Trim()                                //6-Monedacpag
-                                                                              + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                              + "|"                                            //7-TipoCambiocpagdpc
                                                                               + "|" + MetdodoPago.Trim()                           //8-MetodoDePago
                                                                               + "|" + numerodeparcialidad.Trim()                          //9-NumeroDeParcialidad
-                                                                              + "|" + total.Trim()                                  //10-ImporteSaldoAnterior
+                                                                              + "|" + importeSaldoAnterior.Trim()                                  //10-ImporteSaldoAnterior
                                                                               + "|" + total.Trim()                                  //11-ImportePagado                                                  
                                                                               + "|" + importesaldoinsoluto                                           //12 ImporteSaldoInsoluto
                                                                               + "| \r\n");
@@ -1025,10 +1046,10 @@ namespace CARGAR_EXCEL
                                                                               + "|" + serieinvoice.Trim()                                 //4-Seriecpag
                                                                               + "|" + idcomprobante.Trim()                                    //5-Foliocpag
                                                                               + "|" + monedascpadgoc.Trim()                                 //6-Monedacpag
-                                                                              + "|" + ""                                             //7-TipoCambiocpagdpc
+                                                                              + "|" + tipocambiocpag                                             //7-TipoCambiocpagdpc
                                                                               + "|" + MetdodoPago.Trim()                            //8-MetodoDePago
                                                                               + "|" + numerodeparcialidad.Trim()                          //9-NumeroDeParcialidad
-                                                                              + "|" + total.Trim()                                   //10-ImporteSaldoAnterior
+                                                                              + "|" + importeSaldoAnterior.Trim()                                   //10-ImporteSaldoAnterior
                                                                               + "|" + total.Trim()                                  //11-ImportePagado                                                  
                                                                               + "|" + importesaldoinsoluto.Trim()                                            //12 ImporteSaldoInsoluto
                                                                               + "| \r\n");
@@ -1587,7 +1608,7 @@ namespace CARGAR_EXCEL
                     escritor.WriteLine(
                        "02"                                                   //1-Tipo De Registro
                        + "|" + txtIdCliente.Text.Trim()                       //2-Id Receptor
-                       + "|" + "XEXX010101000"                                //3-RFC
+                       + "|" + txtRFC.Text.Trim()                                //3-RFC
                        + "|" + txtCliente.Text.Trim()                         //4-Nombre
                        + "|" + txtPaís.Text.Trim()                            //5-Pais
                        + "|" + txtCalle.Text.Trim()                           //6-Calle
@@ -1599,15 +1620,15 @@ namespace CARGAR_EXCEL
                        + "|" + txtMunicipio.Text.Trim()                       //12-Municio/Delegacion
                        + "|" + txtEstado.Text.Trim()                          //13-EStado
                        + "|" + txtCP.Text.Trim()                              //14-Codigo Postal
-                       + "|" + "USA" // paisresidencia                                 //15-Pais de Residecia Fiscal Cuando La Empresa Sea Extrajera
-                       + "|" + txtRFC.Text.Trim()                                  //16-Numero de Registro de ID Tributacion 
+                       + "|"                                                // paisresidencia                                 //15-Pais de Residecia Fiscal Cuando La Empresa Sea Extrajera
+                       + "|"                                   //16-Numero de Registro de ID Tributacion 
                        + "|" + mailenvio                                      //17-Correo de envio                                                    
                        + "|"                                                  //Fin Del Registro 
                        );
 
                     escrituraFactura += "\\n02"                                                   //1-Tipo De Registro
                        + "|" + txtIdCliente.Text.Trim()                       //2-Id Receptor
-                       + "|" + "XEXX010101000"                                //3-RFC
+                       + "|" + txtRFC.Text.Trim()                                //3-RFC
                        + "|" + txtCliente.Text.Trim()                         //4-Nombre
                        + "|" + txtPaís.Text.Trim()                            //5-Pais
                        + "|" + txtCalle.Text.Trim()                           //6-Calle
@@ -1619,8 +1640,8 @@ namespace CARGAR_EXCEL
                        + "|" + txtMunicipio.Text.Trim()                       //12-Municio/Delegacion
                        + "|" + txtEstado.Text.Trim()                          //13-EStado
                        + "|" + txtCP.Text.Trim()                              //14-Codigo Postal
-                       + "|" + "USA" // paisresidencia                                 //15-Pais de Residecia Fiscal Cuando La Empresa Sea Extrajera
-                       + "|" + txtRFC.Text.Trim()                                  //16-Numero de Registro de ID Tributacion 
+                       + "|"                                          // paisresidencia                                 //15-Pais de Residecia Fiscal Cuando La Empresa Sea Extrajera
+                       + "|"                                   //16-Numero de Registro de ID Tributacion 
                        + "|" + mailenvio                                      //17-Correo de envio                                                    
                        + "|";
 
