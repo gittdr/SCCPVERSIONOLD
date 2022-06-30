@@ -19,6 +19,7 @@ namespace CARGAR_EXCEL.Models
         public string serie { get; set; }
         public string rfc { get; set; }
         public string ord_hdrnumber { get; set; }
+        public string tcfix { get; set; }
         private const string facturasListadop = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
         private const string facturas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by CONVERT(INT, folio) ASC";
         private const string facturasEnviadas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
@@ -43,6 +44,31 @@ namespace CARGAR_EXCEL.Models
             using (SqlConnection connection = new SqlConnection(cadena))
             {
                 using (SqlCommand selectCommand = new SqlCommand("select top 5 Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by Folio ASC", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTablee);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTablee;
+        }
+        public DataTable tipoCambio()
+        {
+            DataTable dataTablee = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("select TOP 1 cex_rate from currency_exchange order by cex_date desc", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))

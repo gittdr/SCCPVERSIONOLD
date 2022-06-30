@@ -106,7 +106,7 @@ header h1 span {
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+       
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
@@ -133,18 +133,7 @@ header h1 span {
             </div>
           </div>
         </div>
-        <div class="item">
-          <!--<img class="third-slide" src="images/1024.png" alt="Third slide">-->
-            <div id='slide3' class='overlay'></div>
-<div class="container">
-            <div class="carousel-caption">
-              <h1>TDR Soluciones Logísticas</h1>
-                <p>
-				     <asp:HyperLink ID="HyperLink3" CssClass="btn btn-success btn-lg mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif;" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
-                </p>
-            </div>
-          </div>
-        </div>
+       
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

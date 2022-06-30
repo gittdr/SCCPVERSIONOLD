@@ -17,6 +17,7 @@ namespace CARGAR_EXCEL.Models
         public string serie { get; set; }
         public string rfc { get; set; }
         public string ord_hdrnumber { get; set; }
+        public string tcfix { get; set; }
 
 
 
@@ -32,6 +33,7 @@ namespace CARGAR_EXCEL.Models
             public DateTime? fecha { get; set; }
             public string ord_billto { get; set; }
             public string serie { get; set; }
+            public string tcfix { get; set; }
             
 
 
