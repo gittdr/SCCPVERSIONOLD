@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+     <title>TDR | Complemento de Pago</title>
+    <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
@@ -125,11 +126,12 @@ nav li#user-info > span:after{
         visibility:hidden;
     }
 }
+
     </style>
 </head>
 <body class="bg-muted">
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#001c46!important">
   <a class="navbar-brand" href="#">
       <img src="images/logo.png" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,7 +148,7 @@ nav li#user-info > span:after{
       <ul class="navbar-nav">
             
             <li class="nav-item active text-white">
-                <asp:HyperLink ID="HyperLink2" CssClass="btn btn-outline-success text-white"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"><b><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</b></asp:HyperLink>
+                <asp:HyperLink ID="HyperLink2" CssClass="btn btn-outline-warning text-white"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"><b><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar</b></asp:HyperLink>
               
             </li>
           </ul>
@@ -159,7 +161,7 @@ nav li#user-info > span:after{
         <div class="container-fluid mt-4">
              <div class="card">
                   <div class="card-header">
-                    Complemento Pago 
+                    <b>Complemento Pago</b> 
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -206,19 +208,21 @@ nav li#user-info > span:after{
                                                 </asp:TableRow>
 
                                             </asp:Table><br />
-                                            <asp:Table id="tablaStops" class="table table-striped" runat="server" Font-Names="ARIAL">
+          
+                                           
+                                             <asp:Table id="tablaStops" class="table table-striped" runat="server" Font-Names="ARIAL">
                                                 <asp:TableRow>
                                                     <asp:TableCell HorizontalAlign="Center">
-                                                        Folio
+                                                        <b>Folio</b>
                                                     </asp:TableCell><asp:TableCell HorizontalAlign="Center">
-                                                        Fecha
+                                                        <b>Fecha</b>
                                                     </asp:TableCell><asp:TableCell HorizontalAlign="Center">
-                                                        Cliente
+                                                        <b>Cliente</b>
                                                     </asp:TableCell>
                                                 </asp:TableRow>
 
                                             </asp:Table>
-                                                </center>
+                         </center>   
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
@@ -236,7 +240,7 @@ nav li#user-info > span:after{
         </div>
     </form>
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 100vh;">
+    margin-top: 10vh;background-color:#001c46!important">
     <div class="container text-center text-white">
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
     </div>

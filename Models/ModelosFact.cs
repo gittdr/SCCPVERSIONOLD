@@ -46,6 +46,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select top 5 Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by Folio ASC", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 200;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
@@ -71,6 +72,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select TOP 1 cex_rate from currency_exchange order by cex_date desc", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 200;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
@@ -151,6 +153,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1000;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
@@ -176,6 +179,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1000;
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
@@ -208,6 +212,7 @@ namespace CARGAR_EXCEL.Models
                     {
                         //Le indico que es del itpo procedure
                         cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 1000;
                         //Esta linea define un parametro
                         cmd.Parameters.AddWithValue("@identificador", identificador);
                         cmd.Parameters.AddWithValue("@foliocpag", foliocpag);
@@ -261,6 +266,7 @@ namespace CARGAR_EXCEL.Models
                     {
                         //Le indico que es del itpo procedure
                         cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 1000;
                         //Esta linea define un parametro
                         cmd.Parameters.AddWithValue("@orden", orden);
                         
@@ -306,7 +312,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago where folio = @factura and medotodepago = 'PPD' union select * from vista_fe_copago_Enviados where folio = @factura and medotodepago = 'PPD' ", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
-                    selectCommand.CommandTimeout = 200;
+                    selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@factura", (object)fact);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
@@ -334,6 +340,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago_cpagdoc where identificadordelPago = @identificador", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
@@ -361,6 +368,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select invoice as folio from [172.24.16.112].[TMWSuite].[dbo].VISTA_Fe_generadas where nmaster = @identificador", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
@@ -387,6 +395,7 @@ namespace CARGAR_EXCEL.Models
                 using (SqlCommand selectCommand = new SqlCommand("select ord_hdrnumber from invoiceheader where ivh_hdrnumber = @identificador", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
@@ -430,6 +439,7 @@ namespace CARGAR_EXCEL.Models
                     strArray[4] = num.ToString();
                     string str = string.Concat(strArray);
                     selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 5000;
                     selectCommand.Parameters.AddWithValue("@factura", (object)fact);
                     selectCommand.Parameters.AddWithValue("@fecha", (object)str);
                     using (new SqlDataAdapter(selectCommand))

@@ -129,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="images\favpng_magnifying-glass-invoice.png" />
+    <Content Include="images\icono-tdr-soluciones-logisticas.ico" />
     <Content Include="Inicial.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetallesComplemento.aspx" />

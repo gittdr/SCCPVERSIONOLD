@@ -6,10 +6,12 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>TDR | Complemento de Pago</title>
+    <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&family=Roboto:ital,wght@0,400;1,300&display=swap" rel=
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
@@ -52,6 +54,9 @@
     width: 100%;
     height: 100vh;
     /*background-image: url(images/bg_02.jpg);*/
+    /*background: rgb(2,0,36);*/
+   
+    /*background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 37%, rgba(250,255,0,1) 100%);*/
     background-image: url(https://media-exp1.licdn.com/dms/image/C4E1BAQGA1cWuVr4JTw/company-background_10000/0/1612830472883?e=2147483647&v=beta&t=nYmnTbV2bKdoFsLYrmN-3SjNtlA7rH96uyBEnN7VY8M);
     background-size: cover;/*image takes full dimentions*/
     background-position: center;/*image stays center on resize*/
@@ -105,7 +110,7 @@ header h1 span {
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
+       <li data-target="#myCarousel" data-slide-to="1"></li>
        
       </ol>
       <div class="carousel-inner" role="listbox">
@@ -121,18 +126,7 @@ header h1 span {
             </div>
           </div>
         </div>
-        <div class="item">
-          <!--<img class="second-slide" src="images/bg_02.jpg" alt="Second slide">-->
-            <div id='slide2' class="overlay"></div>
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>TDR Soluciones Logísticas</h1>
-                <p>
-				     <asp:HyperLink ID="HyperLink2" CssClass="btn btn-success btn-lg mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif;" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
-                </p>
-            </div>
-          </div>
-        </div>
+      
        
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
