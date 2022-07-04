@@ -19,6 +19,11 @@ namespace CARGAR_EXCEL.Models
         public string serie { get; set; }
         public string rfc { get; set; }
         public string ord_hdrnumber { get; set; }
+        public DateTime FechaActual
+        {
+            get { return DateTime.Now; }
+            set { this.FechaActual = value; }
+        }
         public string tcfix { get; set; }
         private const string facturasListadop = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente from vista_fe_copago_Enviados order by CONVERT(INT, folio) ASC";
         private const string facturas = "select CONVERT(INT, folio) as Folio, FechaHoraEmision as Fecha, Nombre as Cliente,idreceptor from vista_fe_copago order by CONVERT(INT, folio) ASC";

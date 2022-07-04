@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="images\businessman-3213659.jpg" />
     <Content Include="images\favpng_magnifying-glass-invoice.png" />
     <Content Include="images\icono-tdr-soluciones-logisticas.ico" />
     <Content Include="Inicial.aspx" />

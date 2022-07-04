@@ -68,7 +68,7 @@ namespace CARGAR_EXCEL
             imgFDesde.Visible = false;
             imgFHasta.Visible = false;
             lblFact.Text = Request.QueryString["factura"];
-            //lblFact.Text = "40828";
+            //lblFact.Text = "40847";
             //foliot = Request.QueryString["factura"];
             if (IsPostBack)
             {
@@ -89,7 +89,8 @@ namespace CARGAR_EXCEL
             }
             catch (Exception EX)
             {
-                string error = EX.Message;
+                string msg = "¡Error, ponte en contacto con TI";
+                ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
             }
         }
 
@@ -2483,7 +2484,7 @@ namespace CARGAR_EXCEL
 
 
                             txtTipoCobro.Text = "Complemento Pago";
-                           generaTXT();
+                           //generaTXT();
                         }
                     }
 
@@ -3256,7 +3257,8 @@ namespace CARGAR_EXCEL
 
                 catch (Exception ex)
                 {
-                    string errors = ex.Message;
+                    string msg = "¡Error, ponte en contacto con TI";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Error con los folios relacionados ', 'error');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
                 }
 
 

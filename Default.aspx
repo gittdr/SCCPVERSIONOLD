@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>TDR | Complemento de Pago</title>
+    <title>TDR | Complementos de Pago</title>
     <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,9 +112,9 @@ html, body{
     
 <div id="div2">
     <div class="container-fluid h-custom">
-        <div class="row d-flex justify-content-center align-items-center" style="border-radius:1rem;background-color: rgba(255, 255, 255, 0.2)!important;margin:30px 20px 20px 20px;min-height:90vh">
+        <div class="row d-flex justify-content-center align-items-center" style="border-radius:1rem;background-color: rgba(255, 255, 255, 0.2)!important;margin:30px 20px 20px 20px;min-height:90vh;box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);">
             <div class="col-md-12 bg-red" style="height:100%!important">
-                <h1>Complemento de Pago</h1>
+                <h1>Complementos de Pago</h1>
             </div>
             <div class="col-md-8 bg-red" style="height:100%!important;text-align:center">
                 <img src="images/favpng_magnifying-glass-invoice.png"
@@ -126,7 +126,7 @@ html, body{
          
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-lg btn-block mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif;background-color:#f2c43e" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-lg btn-block mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif;background-color:#f2c43e;box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-list" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
               
             
           </div>

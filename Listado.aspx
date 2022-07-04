@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     <title>TDR | Complemento de Pago</title>
+     <title>TDR | Complementos de Pago</title>
     <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
@@ -19,6 +19,9 @@
     <script src="https://kit.fontawesome.com/789a3ce2b4.js" crossorigin="anonymous"></script>
    
     <style>
+        html{
+            scroll-behavior: smooth;
+        }
         .mitabla {
             width :100%
         }
@@ -131,20 +134,29 @@ nav li#user-info > span:after{
 </head>
 <body class="bg-muted">
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#001c46!important">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:rgba(0, 25, 61, 0.9) !important;">
   <a class="navbar-brand" href="#">
       <img src="images/logo.png" /></a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
         
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav mr-auto ml-auto">
-       
-      <li class="nav-item active m-auto">
-        <a class="nav-link" href="#"><h3>Complemento Pago</h3><span class="sr-only">(current)</span></a>
+     <ul class="navbar-nav mr-auto">
+         <li class="nav-item active">
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+      </li>
+      <li class="nav-item">
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
       </li>
     </ul>
+    <%--<ul class="navbar-nav mr-auto ml-auto">
+       
+      <li class="nav-item active m-auto">
+        <a class="nav-link" href="#"><h3>Complementos de Pago</h3><span class="sr-only">(current)</span></a>
+      </li>
+    </ul>--%>
       <ul class="navbar-nav">
             
             <li class="nav-item active text-white">
@@ -159,9 +171,9 @@ nav li#user-info > span:after{
              
 </nav>
         <div class="container-fluid mt-4">
-             <div class="card">
+             <div class="card" style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);">
                   <div class="card-header">
-                    <b>Complemento Pago</b> 
+                    <b>Complementos de Pago</b> 
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -237,11 +249,14 @@ nav li#user-info > span:after{
                  
                 </div>
             <div runat="server" id="divLoading" style="background-image:url(images/loading.gif);position:absolute;top:0;left:0;width:100%;height:100%;background-repeat:no-repeat;background-position:center;z-index:2000"></div>
+            
         </div>
     </form>
+    
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 10vh;background-color:#001c46!important">
+    margin-top: 10vh;background:rgba(0, 25, 61, 0.9) !important;">
     <div class="container text-center text-white">
+        <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
     </div>
   </footer>
