@@ -40,6 +40,10 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.getFacturas();
         }
+        public DataTable facturasSinRfc()
+        {
+            return this.modelFact.getFacturasSinRfc();
+        }
         // GET: FacCp
         public ActionResult Index()
         {

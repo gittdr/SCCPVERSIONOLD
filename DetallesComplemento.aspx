@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesComplemento.aspx.cs" Inherits="CARGAR_EXCEL.DetallesComplemento" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesComplemento.aspx.cs" Inherits="CARGAR_EXCEL.DetallesComplemento"  %>
 
 <!DOCTYPE html>
 
@@ -61,10 +61,10 @@
               <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b>Complementos de pago | </b></asp:HyperLink>
       </li>
       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Inicial.aspx" NavigateUrl="~/Inicial.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
       </li>
     </ul>
                 <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -89,15 +89,19 @@
         <div runat="server" id="formularioT" class="container mt-4">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <asp:ScriptManager ID="ScriptManager1" AsyncPostBackTimeOut="360000" runat="server"></asp:ScriptManager>
                     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
                         <ContentTemplate>
                             <div style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);" class="card">
                                 <div class="card-header">
                                       <div class="form-row">
-                                <label>Complemento de Pago - </label>
+                                
                                     <div class="form-group col-md-6">
+                                        <label>Complemento de Pago - </label>
                                         <asp:Label Style="font-weight:700" ID="lblFact" runat="server" Text="Label"></asp:Label>
+                                    </div>
+                                    <div class="form-form-group col-md-6" style="text-align:right">
+                                        <asp:Button ID="btnGenerarTxt" runat="server" CssClass="btn btn-primary" OnClick="btnGenerarTxt_Click" Text="Generar TXT" />
                                     </div>
                                 </div>
                                 </div>

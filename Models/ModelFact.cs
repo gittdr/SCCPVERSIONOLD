@@ -248,6 +248,31 @@ namespace CARGAR_EXCEL.Models
             }
             return dataTablee;
         }
+        public DataTable getFacturasSinRfc()
+        {
+            DataTable dataTablee = new DataTable();
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("select DISTINCT TOP 100 TRY_CONVERT(INT, REPLACE(Folio, '-','')) as Folio, FechaPago as Fecha, Nombre as Cliente,idreceptor, RFC from vista_fe_copago WHERE RFC = '' order by Folio DESC", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTablee);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTablee;
+        }
         public DataTable getDatosInvoice(string identificador)
         {
             DataTable dataTable = new DataTable();

@@ -158,6 +158,7 @@ nav li#user-info > span:after{
                                 </div>
                                 <div class="form-group col-sm-2">
                                   <asp:Button ID="Button1" runat="server" Text="Cargar" CssClass="btn btn-block btn-success mt-4" OnClick="Button1_Click" />
+                                    <asp:Button ID="Button2" runat="server" Text="Cargar" CssClass="btn btn-block btn-success mt-4" OnClick="Button2_Click" />
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <asp:RequiredFieldValidator CssClass="alert alert-danger w-100" ID="RequiredFieldValidator1" ForeColor="Red" runat="server" ErrorMessage="¡Debe seleccionar un archivo!" ControlToValidate="FileUpload1"></asp:RequiredFieldValidator>

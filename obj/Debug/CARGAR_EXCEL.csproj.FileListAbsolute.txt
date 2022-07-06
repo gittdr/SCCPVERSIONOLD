@@ -438,3 +438,4 @@ C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\RestSharp.dll
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\FubarCoder.RestSharp.Portable.Core.xml
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\FubarCoder.RestSharp.Portable.HttpClient.xml
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\RestSharp.xml
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\System.IO.Compression.dll
