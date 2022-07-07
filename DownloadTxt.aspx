@@ -22,6 +22,9 @@
         html{
             scroll-behavior: smooth;
         }
+        table{
+            border:hidden!important;
+        }
         .mitabla {
             width :100%
         }
@@ -145,10 +148,13 @@ nav li#user-info > span:after{
   <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><i class="fa fa-check-circle" aria-hidden="true"></i> Complementos de pago</asp:HyperLink>
       </li>
       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
+      </li>
+          <li class="nav-item">
+        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> <b>&nbsp;<i class="fa fa-arrow-circle-down" style="color:#f2c43e" aria-hidden="true"></i> Descargas</b></asp:HyperLink>
       </li>
     </ul>
     <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -173,7 +179,7 @@ nav li#user-info > span:after{
         <div class="container-fluid mt-4">
              <div class="card" style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);">
                   <div class="card-header">
-                    <b>Download TXT de Complementos de Pago</b> 
+                    <b>Descargar TXT de Complementos de Pago</b> 
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -184,7 +190,7 @@ nav li#user-info > span:after{
                             </figure>
                         </div>--%>
                         
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" style="height:80vh; overflow-y:auto">
                             <div class="form-row">
                                 <%--<div class="form-group col-sm-10">
                                   <label for="txtName">Numero de orden</label>
@@ -192,7 +198,7 @@ nav li#user-info > span:after{
                                     
                                 </div>--%>
                                  <div class="form-group col-sm-12">
-                                  <asp:GridView ID="GridView1" runat="server" Border="0" CssClass="table table-striped" AutoGenerateColumns="false">
+                                  <asp:GridView GridLines="None" ID="GridView1" runat="server" Border="0" CssClass="table table-striped" AutoGenerateColumns="false">
                                       <Columns>
                                           <asp:TemplateField  HeaderText="Folio">
                                             <ItemTemplate>
@@ -206,7 +212,7 @@ nav li#user-info > span:after{
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Descargar">
                                             <ItemTemplate>
-                                                <a href="<%#Eval("Descargar") %>" class="btn btn-success" download="<%#Eval("Descargar") %>">Descargar</a>
+                                                <a href="<%#Eval("Descargar") %>" class="btn btn-success" download="<%#Eval("Descargar") %>"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargar</a>
                                               <%-- <asp:LinkButton CssClass="btn btn-success" ID="test" runat="server" CommandArgument='<%#Eval("Archivo")%>' OnClick="descargar">Descargar</asp:LinkButton> 
                                               --%>   
                                                 

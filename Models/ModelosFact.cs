@@ -16,6 +16,7 @@ namespace CARGAR_EXCEL.Models
         public string status { get; set; }
         public string xmlDownload { get; set; }
         public string folio { get; set; }
+        public string fecha { get; set; }
         public string serie { get; set; }
         public string rfc { get; set; }
         public string ord_hdrnumber { get; set; }
@@ -68,7 +69,60 @@ namespace CARGAR_EXCEL.Models
             }
             return dataTablee;
         }
-        public DataTable tipoCambio()
+        public DataTable getTipoCambio(string fecha)
+        {
+
+
+            DataTable dataTable3 = new DataTable();
+            //NOS CONECTAMOS CON LA BASE DE DATOS
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=DYNAMICS; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("TipoCambioJC", cn))
+                    {
+                        //Le indico que es del itpo procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 1000;
+                        //Esta linea define un parametro
+                        cmd.Parameters.AddWithValue("@fecha", fecha);
+                        //cmd.Parameters.AddWithValue("@foliocpag", foliocpag);
+                        //Ejecutamos el procedimiento
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                        {
+                            try
+                            {
+
+                                sqlDataAdapter.Fill(dataTable3);
+                                cn.Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                cn.Close();
+                                string message = ex.Message;
+
+                            }
+
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+
+                    cn.Close();
+                    string message = ex.Message;
+
+                }
+            }
+
+            return dataTable3;
+        }
+
+            public DataTable tipoCambio()
         {
             DataTable dataTablee = new DataTable();
             string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";

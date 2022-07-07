@@ -21,6 +21,10 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.tipoCambio();
         }
+        public DataTable getTipoCambio(string fecha)
+        {
+            return this.modelFact.getTipoCambio(fecha);
+        }
 
         public DataTable facturasClientes()
         {

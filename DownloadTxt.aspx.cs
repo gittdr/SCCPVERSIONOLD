@@ -41,8 +41,7 @@ namespace CARGAR_EXCEL
         {
 
             DirectoryInfo files = new DirectoryInfo(@"C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\TxtGenerados\");
-            FileInfo[] di = files.GetFiles("*.txt");
-            
+            FileInfo[] di = files.GetFiles("*.txt").OrderByDescending(p => p.CreationTime).ToArray();
 
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Folio", typeof(string)),new DataColumn("Archivo", typeof(string)), new DataColumn("Descargar", typeof(string)) });
@@ -53,6 +52,9 @@ namespace CARGAR_EXCEL
             //Execute a loop over the rows.
             foreach (FileInfo row in di)
             {
+                //var ultimo_archivo = (from f in di
+                //                      orderby f.LastWriteTime descending
+                //                      select f).First();
                 string nombreA = row.Name;
                
 

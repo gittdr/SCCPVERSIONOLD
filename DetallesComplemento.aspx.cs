@@ -29,7 +29,7 @@ namespace CARGAR_EXCEL
         , ivadeiva, ivaderet, retderet, conceptoretencion, consecutivoconcepto, claveproductoservicio, valorunitario, importe, descuento, cantidadletra, uuidrel
         , identificador, version, fechapago, monedacpag, tipodecambiocpag, monto, numerooperacion, rfcemisorcuenta, nombrebanco, numerocuentaord, rfcemisorcuentaben, numcuentaben
         , tipocadenapago, certpago, cadenadelpago, sellodelpago, identpag, identdocpago, seriecpag, foliocpag, monedacpagdoc, tipocambiocpag, metododepago, numerodeparcialidad
-        , importeSaldoAnterior, importepago, importesaldoinsoluto, total, subt, ivat, rett, cond, tipoc, seriee, folioe, sfolio, Foliosrelacionados,serier,folior,uuidpagadas,IdentificadorDelDocumentoPagado, ipagado, nparcialidades,folio, MetdodoPago, Dserie, monedascpadgoc, interiorsaldoanterior, isaldoinsoluto, identificaciondpago, folioscpag,k1,k3, norden, tmoneda, idcomprobante, cantidad, descripcion, Tuuid, iddelpago, iipagado, basecalculado, basecalculado2, basecalculado3, impSaldoAnterior, impSaldoInsoluto;
+        , importeSaldoAnterior, importepago, importesaldoinsoluto, total, subt, ivat, rett, cond, tipoc, seriee, folioe, sfolio, Foliosrelacionados,serier,folior,uuidpagadas,IdentificadorDelDocumentoPagado, ipagado, nparcialidades,folio, MetdodoPago, Dserie, monedascpadgoc, interiorsaldoanterior, isaldoinsoluto, identificaciondpago, folioscpag,k1,k3, norden, tmoneda, idcomprobante, cantidad, descripcion, Tuuid, iddelpago, iipagado, basecalculado, basecalculado2, basecalculado3, impSaldoAnterior, impSaldoInsoluto, fechap;
 
         public bool error = false;
 
@@ -41,6 +41,10 @@ namespace CARGAR_EXCEL
         public decimal importePagos5 = 0;
         public decimal importePagos7 = 0;
         public decimal importePagos22 = 0;
+        public decimal importePagos23 = 0;
+        public decimal importePagos24 = 0;
+        public decimal importePagos25 = 0;
+        public decimal importePagos26 = 0;
         public decimal valorunitarios = 0;
 
        
@@ -70,7 +74,7 @@ namespace CARGAR_EXCEL
             imgFDesde.Visible = false;
             imgFHasta.Visible = false;
             lblFact.Text = Request.QueryString["factura"];
-            //lblFact.Text = "40864";
+            //lblFact.Text = "40866";
             //foliot = Request.QueryString["factura"];
             if (IsPostBack)
             {
@@ -219,6 +223,11 @@ namespace CARGAR_EXCEL
 
                     DateTime dtdtt = DateTime.Parse(row["Fechapago"].ToString());
                     fechapago = dtdtt.ToString("yyyy'-'MM'-'dd'T'HH:mm:ss");
+                    DataTable ctipocambio = facLabControler.getTipoCambio(fechapago);
+                    foreach (DataRow tcambio in ctipocambio.Rows)
+                    {
+                        tipodecambiocpag = tcambio["XCHGRATE"].ToString();
+                    }
                     //fechapago =
                     identificador = row["Identificador"].ToString();
                     version = row["version"].ToString();
@@ -341,6 +350,7 @@ namespace CARGAR_EXCEL
                                                         uid = item.uuid;
                                                         serier = item.serie;
                                                         folior = item.folio;
+                                                        fechap = item.fecha;
                                                         uuidpagadas += uid + "\r\n";
 
                                                         Foliosrelacionados += "Serie: " + serier + " " + "Folio: " + folior + " " + "UUID: " + uid + "\r\n";
@@ -408,6 +418,7 @@ namespace CARGAR_EXCEL
                                                                 //string Csello = rowCC["Sello"].ToString();
                                                                 //tipocambiocpag = rowCC["TipoCambio"].ToString();
                                                                 idcomprobante = rowCC["Folio"].ToString();
+
                                                                 serie = rowCC["Serie"].ToString();
                                                             }
                                                             foreach (DataRow rowsr1 in (InternalDataCollectionBase)dataSet1.Tables["Complemento"].Rows)
@@ -428,7 +439,7 @@ namespace CARGAR_EXCEL
                                                             //FolioUUIDTxt.Text += identpag;
                                                             try
                                                             {
-                                                                importePagos2 = importePagos2 + Convert.ToDecimal(total);
+                                                                importePagos2 = importePagos2 + Convert.ToDecimal(basecalculado);
                                                                 txtTotal.Text = importePagos2.ToString();
                                                             }
                                                             catch (Exception ex)
@@ -440,18 +451,14 @@ namespace CARGAR_EXCEL
                                                             {
                                                                 try
                                                                 {
-                                                                    importePagos22 = importePagos22 + Convert.ToDecimal(basecalculado);
-                                                                    txtTotal.Text = importePagos22.ToString();
+                                                                    importePagos23 = importePagos23 + Convert.ToDecimal(basecalculado);
+                                                                    txtTotal.Text = importePagos23.ToString();
                                                                 }
                                                                 catch (Exception ex)
                                                                 {
                                                                     string errors = ex.Message;
                                                                 }
-                                                                DataTable ctipocambio = facLabControler.tipoCambio();
-                                                                foreach (DataRow tcambio in ctipocambio.Rows)
-                                                                {
-                                                                    tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                                }
+                                                               
                                                                 cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                       + "|" + iddelpago                                       //2-IdentificadorDelPago
                                                                                                                               //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -624,20 +631,8 @@ namespace CARGAR_EXCEL
                                                         }
                                                         if (monedascpadgoc.Trim() == "USD")
                                                         {
-                                                            try
-                                                            {
-                                                                importePagos22 = importePagos22 + Convert.ToDecimal(basecalculado);
-                                                                txtTotal.Text = importePagos22.ToString();
-                                                            }
-                                                            catch (Exception ex)
-                                                            {
-                                                                string errors = ex.Message;
-                                                            }
-                                                            DataTable ctipocambio = facLabControler.tipoCambio();
-                                                            foreach (DataRow tcambio in ctipocambio.Rows)
-                                                            {
-                                                                tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                            }
+                                                            
+                                                           
                                                             cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                   + "|" + iddelpago.Trim()                                      //2-IdentificadorDelPago
                                                                                                                                 //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -813,20 +808,8 @@ namespace CARGAR_EXCEL
                                                                         }
                                                                         if (monedascpadgoc.Trim() == "USD")
                                                                         {
-                                                                            try
-                                                                            {
-                                                                                importePagos22 = importePagos22 + Convert.ToDecimal(basecalculado);
-                                                                                txtTotal.Text = importePagos22.ToString();
-                                                                            }
-                                                                            catch (Exception ex)
-                                                                            {
-                                                                                string errors = ex.Message;
-                                                                            }
-                                                                            DataTable ctipocambio = facLabControler.tipoCambio();
-                                                                            foreach (DataRow tcambio in ctipocambio.Rows)
-                                                                            {
-                                                                                tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                                            }
+                                                                           
+                                                                           
                                                                             cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                               + "|" + iddelpago.Trim()                                       //2-IdentificadorDelPago
                                                                                                                                              //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -918,7 +901,7 @@ namespace CARGAR_EXCEL
                                 }
                                 
                             }
-                            decimal totald = importePagos22 + importePagos7 + importePagos4;
+                            decimal totald = importePagos2 + importePagos22 + importePagos7 + importePagos4 + importePagos23 + importePagos24;
                             txtTotal.Text = totald.ToString() ;
 
                             //AQUI TERMINA GP ---------------------
@@ -1367,11 +1350,7 @@ namespace CARGAR_EXCEL
                                                         {
 
 
-                                                            DataTable ctipocambio = facLabControler.tipoCambio();
-                                                            foreach (DataRow tcambio in ctipocambio.Rows)
-                                                            {
-                                                                tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                            }
+                                                           
                                                             cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                               + "|" + identpag                                       //2-IdentificadorDelPago
                                                                                                                      //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -1684,11 +1663,7 @@ namespace CARGAR_EXCEL
                                                                     {
                                                                         string errors = ex.Message;
                                                                     }
-                                                                    DataTable ctipocambio = facLabControler.tipoCambio();
-                                                                    foreach (DataRow tcambio in ctipocambio.Rows)
-                                                                    {
-                                                                        tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                                    }
+                                                                    
                                                                     cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                           + "|" + iddelpago                                       //2-IdentificadorDelPago
                                                                                                                                   //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -1870,11 +1845,7 @@ namespace CARGAR_EXCEL
                                                                 {
                                                                     string errors = ex.Message;
                                                                 }
-                                                                DataTable ctipocambio = facLabControler.tipoCambio();
-                                                                foreach (DataRow tcambio in ctipocambio.Rows)
-                                                                {
-                                                                    tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                                }
+                                                                
                                                                 cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                       + "|" + iddelpago.Trim()                                      //2-IdentificadorDelPago
                                                                                                                                     //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -2058,11 +2029,7 @@ namespace CARGAR_EXCEL
                                                                                 {
                                                                                     string errors = ex.Message;
                                                                                 }
-                                                                                DataTable ctipocambio = facLabControler.tipoCambio();
-                                                                                foreach (DataRow tcambio in ctipocambio.Rows)
-                                                                                {
-                                                                                    tipodecambiocpag = tcambio["cex_rate"].ToString();
-                                                                                }
+                                                                               
                                                                                 cpagdoc = cpagdoc + ("CPAGDOC"                           //1-Tipo De Registro
                                                                                   + "|" + iddelpago.Trim()                                       //2-IdentificadorDelPago
                                                                                                                                                  //+ "|" + rowIdent["IdentificadorDelDocumentoPagado"].ToString()                            //3-IdentificadorDelDocumentoPagado                                              
@@ -3878,7 +3845,7 @@ namespace CARGAR_EXCEL
 
                 generadorTXT();
                     string msg = "¡Se genero correctamente el TXT!";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Success', 'success');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Success', 'success');setTimeout(function(){window.location.href ='DownloadTxt.aspx'}, 10000)", true);
 
                 
             }

@@ -136,9 +136,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="CSinRfc.aspx" />
     <Content Include="DownloadTxt.aspx" />
+    <Content Include="images\56Z_2111.w012.n001.13B.p12.13.jpg" />
+    <Content Include="images\alala.png" />
     <Content Include="images\businessman-3213659.jpg" />
     <Content Include="images\favpng_magnifying-glass-invoice.png" />
     <Content Include="images\icono-tdr-soluciones-logisticas.ico" />
+    <Content Include="images\kisspng-bank-personal-finance-icon-finance-and-investment-banking-icon-5a8ec1bebeb831.6970510715193051507812.png" />
+    <Content Include="images\kisspng-small-business-management-company-businessman-fingers-download-to-a-report-picture-5a6f78666b15f9.1147671415172547584386.png" />
+    <Content Include="images\transparent-logo-font-line-symbol-yellow-61dbb412c176d6.9459805016417884347924.png" />
     <Content Include="Inicial.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetallesComplemento.aspx" />
