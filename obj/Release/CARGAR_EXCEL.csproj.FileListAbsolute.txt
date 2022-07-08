@@ -234,3 +234,4 @@ C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\obj\Release\CARGAR_E
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\obj\Release\CARGAR_EXCEL.csproj.CopyComplete
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\obj\Release\CARGAR_EXCEL.dll
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\obj\Release\CARGAR_EXCEL.pdb
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\System.IO.Compression.dll

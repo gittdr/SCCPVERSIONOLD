@@ -126,20 +126,25 @@ html, body{
                  
                 
             </div>
-            <div class="col-md-12 bg-red" style="height:100%!important;margin-bottom:40px">
+            <div class="col-md-12 bg-red" style="height:100%!important;margin-bottom:80px">
                  <h1>Complementos de Pago</h1>
+            </div><br />
+            <div class="col-md-8 bg-red" style="height:100%!important;text-align:center;margin-bottom:50px;margin-top:80px">
+                <%--<img src="images/alala.png" class="img-fluid rounded mx-auto d-block" width="30%" alt="Sample image"/>--%>
+               <%-- <img src="images/kisspng-small-business-management-company-businessman-fingers-download-to-a-report-picture-5a6f78666b15f9.1147671415172547584386.png" class="img-fluid" alt="Sample image"/>--%>
+                <img src="images/kisspng-bank-personal-finance-icon-finance-and-investment-banking-icon-5a8ec1bebeb831.6970510715193051507812.png" width="50%" class="img-fluid" alt="Sample image"  />
+               <%-- <img src="images/transparent-logo-font-line-symbol-yellow-61dbb412c176d6.9459805016417884347924.png" width="200px" class="img-fluid" alt="Sample image" />--%>
+                
+                <%--<img src="images/favpng_magnifying-glass-invoice.png"
+          class="img-fluid" alt="Sample image">--%>
             </div>
-            <div class="col-md-8 bg-red" style="height:100%!important;text-align:center;margin-bottom:20px">
-                <img src="images/favpng_magnifying-glass-invoice.png"
-          class="img-fluid" alt="Sample image">
-            </div>
-            <div class="col-md-4 bg-red" style="height:100%!important">
+            <div class="col-md-4 bg-red" style="height:100%!important;padding:250px">
                 <form id="form1" runat="server">
           
          
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-lg btn-block mt-5 shadow-lg text-white" Style="font-family: 'Open Sans', sans-serif;background-color:#f2c43e;box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" CssClass="btn btn-lg btn-block  mt-5 shadow-lg" Style="font-family: 'Open Sans', sans-serif;color:black;background-color:#f2c43e;box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px 19px rgba(0,0,0,0.75);" runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</b></asp:HyperLink>
               
             
           </div>

@@ -146,10 +146,13 @@ nav li#user-info > span:after{
   <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-check-circle" style="color:#f2c43e" aria-hidden="true"></i> Complementos de pago </b></asp:HyperLink>
       </li>
       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
+      </li>
+          <li class="nav-item">
+        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> &nbsp;<i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargas</asp:HyperLink>
       </li>
     </ul>
     <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -255,7 +258,7 @@ nav li#user-info > span:after{
     </form>
     
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 10vh;background:rgba(0, 25, 61, 0.9) !important;">
+    margin-top: 100vh;background:rgba(0, 25, 61, 0.9) !important;">
     <div class="container text-center text-white">
         <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>

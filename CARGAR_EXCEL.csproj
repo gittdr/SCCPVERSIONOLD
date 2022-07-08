@@ -281,6 +281,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
+    <Folder Include="TxtGenerados\Generados\" />
     <Folder Include="Views\FacCp\" />
   </ItemGroup>
   <PropertyGroup>

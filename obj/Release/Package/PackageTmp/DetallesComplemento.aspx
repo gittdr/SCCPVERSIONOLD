@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesComplemento.aspx.cs" Inherits="CARGAR_EXCEL.DetallesComplemento" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetallesComplemento.aspx.cs" Inherits="CARGAR_EXCEL.DetallesComplemento"  %>
 
 <!DOCTYPE html>
 
@@ -59,12 +59,15 @@
               </button>
         
               <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav mr-auto">
+                  <<ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-check-circle" style="color:#f2c43e" aria-hidden="true"></i> Complementos de pago </b></asp:HyperLink>
       </li>
       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
+      </li>
+          <li class="nav-item">
+        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> &nbsp;<i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargas</asp:HyperLink>
       </li>
     </ul>
                 <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -89,7 +92,7 @@
         <div runat="server" id="formularioT" class="container mt-4">
             <div class="row">
                 <div class="col-md-12">
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <asp:ScriptManager ID="ScriptManager1" AsyncPostBackTimeOut="360000" runat="server"></asp:ScriptManager>
                     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
                         <ContentTemplate>
                             <div style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);" class="card">

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DownloadTxt.aspx.cs" Inherits="CARGAR_EXCEL.DownloadTxt" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DownloadTxt.aspx.cs" Inherits="CARGAR_EXCEL.DownloadTxt" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -21,6 +21,9 @@
     <style>
         html{
             scroll-behavior: smooth;
+        }
+        table{
+            border:hidden!important;
         }
         .mitabla {
             width :100%
@@ -145,10 +148,13 @@ nav li#user-info > span:after{
   <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b>Complementos de pago | </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><i class="fa fa-check-circle" aria-hidden="true"></i> Complementos de pago</asp:HyperLink>
       </li>
       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;font-size:20px"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;Complementos sin RFC</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
+      </li>
+          <li class="nav-item">
+        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> <b>&nbsp;<i class="fa fa-arrow-circle-down" style="color:#f2c43e" aria-hidden="true"></i> Descargas</b></asp:HyperLink>
       </li>
     </ul>
     <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -173,7 +179,7 @@ nav li#user-info > span:after{
         <div class="container-fluid mt-4">
              <div class="card" style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);">
                   <div class="card-header">
-                    <b>Download TXT de Complementos de Pago</b> 
+                    <b>Descargar TXT de Complementos de Pago</b> 
                   </div>
                   <div class="card-body">
                     <div class="row">
@@ -184,7 +190,7 @@ nav li#user-info > span:after{
                             </figure>
                         </div>--%>
                         
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" style="height:80vh; overflow-y:auto">
                             <div class="form-row">
                                 <%--<div class="form-group col-sm-10">
                                   <label for="txtName">Numero de orden</label>
@@ -192,9 +198,9 @@ nav li#user-info > span:after{
                                     
                                 </div>--%>
                                  <div class="form-group col-sm-12">
-                                  <asp:GridView ID="GridView1" style="font-size:10px" runat="server" CssClass="table table-bordered mitabla table-hover" AutoGenerateColumns="false">
+                                  <asp:GridView GridLines="None" ID="GridView1" runat="server" Border="0" CssClass="table table-striped" AutoGenerateColumns="false">
                                       <Columns>
-                                          <asp:TemplateField HeaderText="Folio">
+                                          <asp:TemplateField  HeaderText="Folio">
                                             <ItemTemplate>
                                                 <asp:Label runat="server" Text='<%#Eval("Folio") %>'></asp:Label>
                                             </ItemTemplate>
@@ -206,13 +212,15 @@ nav li#user-info > span:after{
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Descargar">
                                             <ItemTemplate>
-                                                <a href='<%#Eval("Descargar") %>'>
-                                                    Descargar
-                                                </a>
+                                                <a href="<%#Eval("Descargar") %>" class="btn btn-success" download="<%#Eval("Descargar") %>"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargar</a>
+                                              <%-- <asp:LinkButton CssClass="btn btn-success" ID="test" runat="server" CommandArgument='<%#Eval("Archivo")%>' OnClick="descargar">Descargar</asp:LinkButton> 
+                                              --%>   
+                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
                                   </asp:GridView>
+
                                 </div>
                               
                             </div>
@@ -225,12 +233,15 @@ nav li#user-info > span:after{
                  
                 </div>
             <div runat="server" id="divLoading" style="background-image:url(images/loading.gif);position:absolute;top:0;left:0;width:100%;height:100%;background-repeat:no-repeat;background-position:center;z-index:2000"></div>
-            
+             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnFiltrar" />
+                
+            </Triggers>
         </div>
     </form>
     
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 100vh;background:rgba(0, 25, 61, 0.9) !important;">
+    margin-top: 10vh;background:rgba(0, 25, 61, 0.9) !important;">
     <div class="container text-center text-white">
         <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
