@@ -133,6 +133,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ccp.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="CSinRfc.aspx" />
     <Content Include="DownloadTxt.aspx" />
@@ -165,6 +166,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Ccp.aspx.cs">
+      <DependentUpon>Ccp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ccp.aspx.designer.cs">
+      <DependentUpon>Ccp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\facLabController.cs" />
     <Compile Include="Controllers\FacCpController.cs" />
     <Compile Include="CSinRfc.aspx.cs">

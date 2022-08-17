@@ -138,7 +138,7 @@ html, body{
                 <%--<img src="images/favpng_magnifying-glass-invoice.png"
           class="img-fluid" alt="Sample image">--%>
             </div>
-            <div class="col-md-4 bg-red" style="height:100%!important;padding:250px">
+            <div class="col-md-4 bg-red" style="height:100%!important">
                 <form id="form1" runat="server">
           
          

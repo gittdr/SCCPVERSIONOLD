@@ -105,6 +105,11 @@ namespace CARGAR_EXCEL
                     }
                 }
             }
+
+
+            // ESTE ES EL CODIGO LISTO 
+
+
             //folio = "40737";
             //serie = "TDRA";
 
