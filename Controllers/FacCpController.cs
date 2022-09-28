@@ -40,6 +40,14 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.getFacturas();
         }
+        public void Elist(string identificador)
+        {
+            this.modelFact.Elist(identificador);
+        }
+        public DataTable Elist2(string identificador)
+        {
+            return this.modelFact.Elist2(identificador);
+        }
         public DataTable facturasSinRfc()
         {
             return this.modelFact.getFacturasSinRfc();

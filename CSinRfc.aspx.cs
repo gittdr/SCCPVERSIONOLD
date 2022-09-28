@@ -46,9 +46,9 @@ namespace CARGAR_EXCEL
                         {
                             HyperLink hp1 = new HyperLink();
                             hp1.ID = "hpIndex" + rownum.ToString();
-                            hp1.Text = item[i].ToString();
-                            //hp1.NavigateUrl = "DetallesComplemento.aspx?factura=" + item[i].ToString();
-                            TableCell c = new TableCell();
+                            hp1.Text = "<button type='button' class='btn btn-danger'>" + item[i].ToString() + "</button>";
+                        //hp1.NavigateUrl = "DetallesComplemento.aspx?factura=" + item[i].ToString();
+                        TableCell c = new TableCell();
                             c.Controls.Add(hp1);
                             r.Cells.Add(c);
 

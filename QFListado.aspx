@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DownloadTxt.aspx.cs" Inherits="CARGAR_EXCEL.DownloadTxt" EnableEventValidation="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QFListado.aspx.cs" Inherits="CARGAR_EXCEL.QFListado" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-     <title>TDR | Complementos de Pago</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TDR | Complementos de Pago</title>
     <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
@@ -21,9 +21,6 @@
     <style>
         html{
             scroll-behavior: smooth;
-        }
-        table{
-            border:hidden!important;
         }
         .mitabla {
             width :100%
@@ -105,6 +102,7 @@ nav li#user-info > span:after{
   background: #fff;
   border-radius: 10px;
   padding: 30px;
+  z-index: 1900;
 
 }
 #divLoading {
@@ -134,10 +132,41 @@ nav li#user-info > span:after{
 }
 
     </style>
-</head>
-<body class="bg-muted">
+    <%--<script type="text/javascript">
+        
+        function Showalert() {
+            
+            var divv = document.getElementById('<%=TextBox1.ClientID%>').value;
+            
+            
+            swal({
+                title: '<h1><i style="color:#f27474;font-size:80px;" class="fa fa-times-circle-o" aria-hidden="true"></i></h1>',
+                icon: 'success',
+                html: '<div class="alert alert-success" role="alert">' + divv+'</div>',
+                showCloseButton: false,
+                showCancelButton: false,
+                focusConfirm: false
+            });
+            return true;
+        }
+        function Showalert2() {
+            var divv = document.getElementById('<%=HiddenField1.ClientID%>').value;
+            swal({
+                title: '<h1><i style="color:#f27474;font-size:80px;" class="fa fa-times-circle-o" aria-hidden="true"></i></h1>',
+                icon: 'success',
+                html: '<div class="alert alert-danger" role="alert">' + divv + '</div>',
+                showCloseButton: false,
+                showCancelButton: false,
+                focusConfirm: false
+            });
+            return true;
+        }
+
+    </script>--%>
+    </head>
+<body>
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:rgba(0, 25, 61, 0.9) !important;">
+          <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:rgba(0, 25, 61, 0.9) !important;">
   <a class="navbar-brand" href="#">
       <img src="images/logo.png" /></a>
 
@@ -148,16 +177,16 @@ nav li#user-info > span:after{
   <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><i class="fa fa-check-circle" aria-hidden="true"></i> Complementos de pago</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-check-circle"  aria-hidden="true"></i> Complementos de pago </b></asp:HyperLink>
       </li>
       <li class="nav-item">
         <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
       </li>
-           <li class="nav-item">
-        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> &nbsp;<i class="fa fa-arrow-circle-down" style="color:#f2c43e" aria-hidden="true"></i> Descargas</asp:HyperLink>
+          <li class="nav-item">
+        <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> &nbsp;<i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargas</asp:HyperLink>
       </li>
          <li class="nav-item">
-        <asp:HyperLink ID="HyperLink5" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="QFListado.aspx" NavigateUrl="~/QFListado.aspx"> &nbsp;<i class="fa fa-trash" aria-hidden="true"></i> Papelera</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink5" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="QFListado.aspx" NavigateUrl="~/QFListado.aspx"> &nbsp;<i class="fa fa-trash" style="color:#f2c43e" aria-hidden="true"></i> Papelera</asp:HyperLink>
       </li>
     </ul>
     <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -180,71 +209,44 @@ nav li#user-info > span:after{
              
 </nav>
         <div class="container-fluid mt-4">
-             <div class="card" style="box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-webkit-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 82px -2px rgba(0,0,0,0.75);">
+                 <div class="card">
                   <div class="card-header">
-                    <b>Descargar TXT de Complementos de Pago</b> 
+                    <b>Papelera</b>
                   </div>
                   <div class="card-body">
                     <div class="row">
-                        <%--<div class="col-sm-12">
-                            <figure class="figure">
-                              <img src="https://media-exp1.licdn.com/dms/image/C4E1BAQGA1cWuVr4JTw/company-background_10000/0/1612830472883?e=2147483647&v=beta&t=nYmnTbV2bKdoFsLYrmN-3SjNtlA7rH96uyBEnN7VY8M" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
-                              <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
-                            </figure>
-                        </div>--%>
-                        
-                        <div class="col-sm-12" style="height:80vh; overflow-y:auto">
+                        <div class="col-sm-12">
                             <div class="form-row">
-                                <%--<div class="form-group col-sm-10">
-                                  <label for="txtName">Numero de orden</label>
-                                    <asp:TextBox ID="txtName" CssClass="form-control" runat="server" Width="140" />
-                                    
-                                </div>--%>
-                                 <div class="form-group col-sm-12">
-                                  <asp:GridView GridLines="None" ID="GridView1" runat="server" Border="0" CssClass="table table-striped" AutoGenerateColumns="false">
-                                      <Columns>
-                                          <asp:TemplateField  HeaderText="Folio">
-                                            <ItemTemplate>
-                                                <asp:Label runat="server" Text='<%#Eval("Folio") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Archivo">
-                                            <ItemTemplate>
-                                                <asp:Label runat="server" Text='<%#Eval("Archivo") %>'></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Descargar">
-                                            <ItemTemplate>
-                                                <a href="<%#Eval("Descargar") %>" class="btn btn-success" download="<%#Eval("Descargar") %>"><i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargar</a>
-                                              <%-- <asp:LinkButton CssClass="btn btn-success" ID="test" runat="server" CommandArgument='<%#Eval("Archivo")%>' OnClick="descargar">Descargar</asp:LinkButton> 
-                                              --%>   
-                                                
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                  </asp:GridView>
-
+                                <div class="form-group col-sm-10">
+                                  <label for="FileUpload1"><b>Folio</b></label>
+                                    <asp:TextBox ID="Folio" CssClass="form-control-file" runat="server" required="true"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="FValidator" runat="server" ErrorMessage="RequiredFielValidator" ControlToValidate="Folio" Display="Dynamic" ForeColor="Red" SetFocusOnError="True">* Campo requerido</asp:RequiredFieldValidator>
                                 </div>
-                              
+                                <div class="form-group col-sm-2">
+                                  <asp:Button ID="Button1" runat="server" Text="Registrar" CssClass="btn btn-block btn-success mt-4" OnClick="Button1_Click" />
+                                </div>
                             </div>
                         </div>
+                        <hr />
+                        
+                                
+                                    <%--<asp:HiddenField ID="TextBox1"  runat="server"></asp:HiddenField>
+                        <asp:HiddenField ID="HiddenField1"  runat="server"></asp:HiddenField>--%>
+
+                            
+                            
+                        
 
                     </div>
-                      <hr />
-                  
+                      
+                   
                   </div>
-                 
+
                 </div>
-            <div runat="server" id="divLoading" style="background-image:url(images/loading.gif);position:absolute;top:0;left:0;width:100%;height:100%;background-repeat:no-repeat;background-position:center;z-index:2000"></div>
-             <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="btnFiltrar" />
-                
-            </Triggers>
         </div>
     </form>
-    
-     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 10vh;background:rgba(0, 25, 61, 0.9) !important;">
+   <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
+    margin-top: 75vh;background:rgba(0, 25, 61, 0.9) !important;">
     <div class="container text-center text-white">
         <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>

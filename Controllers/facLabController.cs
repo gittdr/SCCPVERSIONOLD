@@ -64,6 +64,10 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.getDatosInvoice(identificador);
         }
+        public void Elist(string identificador)
+        {
+            this.modelFact.Elist(identificador);
+        }
 
         public DataTable getDatosMaster(string identificador)
         {

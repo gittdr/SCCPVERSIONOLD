@@ -11,7 +11,8 @@ namespace CARGAR_EXCEL.Models
     public class ModelosFact
 
     {
-         public string uuid { get; set; }
+        //SELECT * FROM sae_archivos WHERE folio like '%40982%'
+        public string uuid { get; set; }
         public string motivo { get; set; }
         public string status { get; set; }
         public string xmlDownload { get; set; }
@@ -121,8 +122,94 @@ namespace CARGAR_EXCEL.Models
 
             return dataTable3;
         }
+        public DataTable Elist2(string identificador)
+        {
 
-            public DataTable tipoCambio()
+
+            DataTable dataTable3 = new DataTable();
+            //NOS CONECTAMOS CON LA BASE DE DATOS
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_nomostrarsiexiste_JC", cn))
+                    {
+                        //Le indico que es del itpo procedure
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 1000;
+                        //Esta linea define un parametro
+                        cmd.Parameters.AddWithValue("@folio", identificador);
+                        //cmd.Parameters.AddWithValue("@foliocpag", foliocpag);
+                        //Ejecutamos el procedimiento
+                        cmd.ExecuteNonQuery();
+                        using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd))
+                        {
+                            try
+                            {
+
+                                sqlDataAdapter.Fill(dataTable3);
+                                cn.Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                cn.Close();
+                                string message = ex.Message;
+
+                            }
+
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+
+                    cn.Close();
+                    string message = ex.Message;
+
+                }
+            }
+
+            return dataTable3;
+        }
+        public void Elist(string identificador)
+        {
+            string cadena2 = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            //DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(cadena2))
+            {
+
+                using (SqlCommand selectCommand = new SqlCommand("sp_insertaComplemento_JC", connection))
+                {
+
+                    selectCommand.CommandType = CommandType.StoredProcedure;
+                    selectCommand.CommandTimeout = 100000;
+                    selectCommand.Parameters.AddWithValue("@folio", identificador);
+                    
+
+                    try
+                    {
+                        connection.Open();
+                        selectCommand.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        string message = ex.Message;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+        }
+      
+
+        public DataTable tipoCambio()
         {
             DataTable dataTablee = new DataTable();
             string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
