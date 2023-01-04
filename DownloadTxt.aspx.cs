@@ -39,8 +39,8 @@ namespace CARGAR_EXCEL
         }
         private async Task okTralix()
         {
-            DirectoryInfo files = new DirectoryInfo(@"\\10.223.208.41\inetpub\wwwroot\ComplementoPago\TxtGenerados\Generados\");
-            //DirectoryInfo files = new DirectoryInfo(@"C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\TxtGenerados\");
+            //DirectoryInfo files = new DirectoryInfo(@"\\10.223.208.41\inetpub\wwwroot\ComplementoPago\TxtGenerados\Generados\");
+            DirectoryInfo files = new DirectoryInfo(@"C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\TxtGenerados\");
             FileInfo[] di = files.GetFiles("*.txt").OrderByDescending(p => p.CreationTime).ToArray();
 
             DataTable dt = new DataTable();
@@ -59,8 +59,8 @@ namespace CARGAR_EXCEL
                
 
                 string folio =  nombreA.Replace(".txt", "");
-                string rutanueva = @"http://69.20.92.117:8083/TxtGenerados/Generados/";
-                //string rutanueva = @"http://localhost:56747/TxtGenerados/";
+                //string rutanueva = @"http://69.20.92.117:8083/TxtGenerados/Generados/";
+                string rutanueva = @"http://localhost:56747/TxtGenerados/";
                 string rutaA = files.ToString();
                 string completo = rutanueva + nombreA;
                 string completo2 = rutaA + nombreA;
