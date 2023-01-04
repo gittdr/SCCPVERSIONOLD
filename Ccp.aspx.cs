@@ -234,39 +234,39 @@ namespace CARGAR_EXCEL
 
                     if (txtRFC.Text != "")
                     {
-                        DataTable detalleIdent2 = facLabControler.getDatosCPAGDOC(row["IdentificadorDelPago"].ToString());
-                        if (detalleIdent2.Rows.Count > 0)
-                        {
-                            foreach (DataRow rowIdent2 in detalleIdent2.Rows)
-                            {
-                                identificaciondpago = rowIdent2["IdentificadorDelPago"].ToString();
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("SM-", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("A", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("B", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("C", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("D", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("ND", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace(".", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("-", "").Trim(), @"[A-Z]", "");
-                                folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("NS", "").Trim(), @"[A-Z]", "");
-                                string folioss = folioscpag;
-                                int folii = Int32.Parse(folioss);
-                                string urls = "https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico="+folii;
-                                string url = urls.Trim();
+                        //DataTable detalleIdent2 = facLabControler.getDatosCPAGDOC(row["IdentificadorDelPago"].ToString());
+                        //if (detalleIdent2.Rows.Count > 0)
+                        //{
+                        //    foreach (DataRow rowIdent2 in detalleIdent2.Rows)
+                        //    {
+                        //        identificaciondpago = rowIdent2["IdentificadorDelPago"].ToString();
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("SM-", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("A", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("B", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("C", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("D", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("ND", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace(".", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("-", "").Trim(), @"[A-Z]", "");
+                        //        folioscpag = Regex.Replace(rowIdent2["Foliocpag"].ToString().Replace("NS", "").Trim(), @"[A-Z]", "");
+                        //        string folioss = folioscpag;
+                        //        int folii = Int32.Parse(folioss);
+                        //        string urls = "https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico="+folii;
+                        //        string url = urls.Trim();
 
 
-                                var request2819a = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico="+folii+"&rfc="+txtRFC.Text);
-                                var response2819a = (HttpWebResponse)request2819a.GetResponse();
-                                var responseString2819a = new StreamReader(response2819a.GetResponseStream()).ReadToEndAsync();
-                                //WebRequest request2819 = (HttpWebRequest)WebRequest.Create(url);
-                                //WebResponse response2819 = (HttpWebResponse)request2819.GetResponse();
-                                //Stream dataStream = response2819.GetResponseStream();
-                                //StreamReader responseString2819 = new StreamReader(dataStream);
-                                //string rt = responseString2819.ReadToEnd();
+                        //        var request2819a = (HttpWebRequest)WebRequest.Create("https://canal1.xsa.com.mx:9050/bf2e1036-ba47-49a0-8cd9-e04b36d5afd4/cfdis?folioEspecifico="+folii+"&rfc="+txtRFC.Text);
+                        //        var response2819a = (HttpWebResponse)request2819a.GetResponse();
+                        //        var responseString2819a = new StreamReader(response2819a.GetResponseStream()).ReadToEndAsync();
+                        //        //WebRequest request2819 = (HttpWebRequest)WebRequest.Create(url);
+                        //        //WebResponse response2819 = (HttpWebResponse)request2819.GetResponse();
+                        //        //Stream dataStream = response2819.GetResponseStream();
+                        //        //StreamReader responseString2819 = new StreamReader(dataStream);
+                        //        //string rt = responseString2819.ReadToEnd();
 
 
-                            }
-                        }
+                        //    }
+                        //}
                     }
 
                         

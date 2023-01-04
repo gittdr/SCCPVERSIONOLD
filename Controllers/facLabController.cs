@@ -49,19 +49,26 @@ namespace CARGAR_EXCEL.Controllers
         //{
         //    return this.modelFact.getFacturasListado();
         //}
-
+        public DataTable getBillto(string billto)
+        {
+            return this.modelFact.getBillto(billto);
+        }
         public DataTable detalleFacturas(string fact)
         {
             return this.modelFact.getDatosFacturas(fact);
+        }
+        public DataTable detalleFacturasf(string fact, string IdRecep)
+        {
+            return this.modelFact.getDatosFacturasF(fact, IdRecep);
         }
         public DataTable getDatosCPAGDOCTRL(string identificador, string foliocpag)
         {
             return this.modelFact.getDatosCPAGDOCTRL(identificador, foliocpag);
         }
 
-        public DataTable getDatosCPAGDOC(string identificador)
+        public DataTable getDatosCPAGDOC(string identificador, string IdRecep)
         {
-            return this.modelFact.getDatosCPAGDOC(identificador);
+            return this.modelFact.getDatosCPAGDOC(identificador, IdRecep);
         }
         public DataTable getDatosInvoice(string identificador)
         {

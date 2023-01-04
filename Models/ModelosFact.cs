@@ -504,18 +504,78 @@ namespace CARGAR_EXCEL.Models
             }
             return dataTable;
         }
+        public DataTable getBillto(string billto)
+        {
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            DataTable dataTable = new DataTable();
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                connection.Open();
+                using (SqlCommand selectCommand = new SqlCommand("sp_getBillto_JC", connection))
+                {
 
-        public DataTable getDatosCPAGDOC(string identificador)
+                    selectCommand.CommandType = CommandType.StoredProcedure;
+                    selectCommand.CommandTimeout = 100000;
+                    selectCommand.Parameters.AddWithValue("@billto", billto);
+                    selectCommand.ExecuteNonQuery();
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            //selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                        catch (SqlException ex)
+                        {
+                            connection.Close();
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTable;
+        }
+        public DataTable getDatosFacturasF(string fact, string IdRecep)
         {
             DataTable dataTable = new DataTable();
             string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
             using (SqlConnection connection = new SqlConnection(cadena))
             {
-                using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago_cpagdoc where identificadordelPago = @identificador", connection))
+                using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago where folio = @factura and medotodepago = 'PPD' and Foliocpag !='' and IdReceptor = @IdRecep union select * from vista_fe_copago_Enviados where folio = @factura and medotodepago = 'PPD' and Foliocpag !='' and IdReceptor = @IdRecep", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
-                    selectCommand.CommandTimeout = 1000;
+                    selectCommand.CommandTimeout = 1000434;
+                    selectCommand.Parameters.AddWithValue("@factura", (object)fact);
+                    selectCommand.Parameters.AddWithValue("@IdRecep", (object)IdRecep);
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTable;
+        }
+
+        public DataTable getDatosCPAGDOC(string identificador, string IdRecep)
+        {
+            DataTable dataTable = new DataTable();
+            string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago_cpagdoc_JC where identificadordelPago = @identificador and Billto = @IdRecep", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    selectCommand.CommandTimeout = 1323000;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
+                    selectCommand.Parameters.AddWithValue("@IdRecep", (object)IdRecep);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
