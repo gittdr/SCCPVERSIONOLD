@@ -564,18 +564,17 @@ namespace CARGAR_EXCEL.Models
             return dataTable;
         }
 
-        public DataTable getDatosCPAGDOC(string identificador, string IdRecep)
+        public DataTable getDatosCPAGDOC(string identificador)
         {
             DataTable dataTable = new DataTable();
             string cadena = @"Data source=172.24.16.113; Initial Catalog=TDR; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
             using (SqlConnection connection = new SqlConnection(cadena))
             {
-                using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago_cpagdoc_JC where identificadordelPago = @identificador and Billto = @IdRecep", connection))
+                using (SqlCommand selectCommand = new SqlCommand("select * from vista_fe_copago_cpagdoc where identificadordelPago = @identificador", connection))
                 {
                     selectCommand.CommandType = CommandType.Text;
-                    selectCommand.CommandTimeout = 1323000;
+                    selectCommand.CommandTimeout = 1000;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
-                    selectCommand.Parameters.AddWithValue("@IdRecep", (object)IdRecep);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try

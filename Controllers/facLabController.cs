@@ -66,9 +66,9 @@ namespace CARGAR_EXCEL.Controllers
             return this.modelFact.getDatosCPAGDOCTRL(identificador, foliocpag);
         }
 
-        public DataTable getDatosCPAGDOC(string identificador, string IdRecep)
+        public DataTable getDatosCPAGDOC(string identificador)
         {
-            return this.modelFact.getDatosCPAGDOC(identificador, IdRecep);
+            return this.modelFact.getDatosCPAGDOC(identificador);
         }
         public DataTable getDatosInvoice(string identificador)
         {
