@@ -189,7 +189,7 @@ nav li#user-info > span:after{
                         <div class="col-sm-12">
                             <div class="form-row">
                                 
-                                <div class="form-group col-sm-12">
+                                <div class="form-group col-sm-12" >
                                   <label for="Billto"><b>Billto</b></label>
                                     <asp:TextBox ID="Billto" CssClass="form-control" runat="server" required="true"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFielValidator" ControlToValidate="Billto" Display="Dynamic" ForeColor="Red" SetFocusOnError="True">* Campo requerido</asp:RequiredFieldValidator>
@@ -221,7 +221,7 @@ nav li#user-info > span:after{
                         <b><i class="fa fa-list btn btn-success" aria-hidden="true"></i> Listado de clientes</b>
                     </div>
                     <div class="card-body">
-                         <div class="form-group col-sm-12">
+                         <div class="form-group col-sm-12" style="overflow: scroll;height:60vh">
                                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
                                         <ContentTemplate>
@@ -259,7 +259,7 @@ nav li#user-info > span:after{
     </form>
     
      <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 70vh;background:rgba(0, 8, 20, 0.9) !important;">
+    margin-top: 55vh;background:rgba(0, 25, 61, 0.9) !important;">
     <div class="container text-center text-white">
         <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>
