@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QFListado.aspx.cs" Inherits="CARGAR_EXCEL.QFListado" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FDPago.aspx.cs" Inherits="CARGAR_EXCEL.FDPago" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>TDR | Complementos de Pago</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <title>TDR | Complementos de Pagos V2.0</title>
     <link rel="shortcut icon" href="images/icono-tdr-soluciones-logisticas.ico" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
@@ -103,7 +103,6 @@ nav li#user-info > span:after{
   border-radius: 10px;
   padding: 30px;
   z-index: 1900;
-
 }
 #divLoading {
     -moz-animation: cssAnimation 0s ease-in 3s forwards;
@@ -132,41 +131,10 @@ nav li#user-info > span:after{
 }
 
     </style>
-    <%--<script type="text/javascript">
-        
-        function Showalert() {
-            
-            var divv = document.getElementById('<%=TextBox1.ClientID%>').value;
-            
-            
-            swal({
-                title: '<h1><i style="color:#f27474;font-size:80px;" class="fa fa-times-circle-o" aria-hidden="true"></i></h1>',
-                icon: 'success',
-                html: '<div class="alert alert-success" role="alert">' + divv+'</div>',
-                showCloseButton: false,
-                showCancelButton: false,
-                focusConfirm: false
-            });
-            return true;
-        }
-        function Showalert2() {
-            var divv = document.getElementById('<%=HiddenField1.ClientID%>').value;
-            swal({
-                title: '<h1><i style="color:#f27474;font-size:80px;" class="fa fa-times-circle-o" aria-hidden="true"></i></h1>',
-                icon: 'success',
-                html: '<div class="alert alert-danger" role="alert">' + divv + '</div>',
-                showCloseButton: false,
-                showCancelButton: false,
-                focusConfirm: false
-            });
-            return true;
-        }
-
-    </script>--%>
-    </head>
-<body>
+</head>
+<body class="bg-muted">
     <form id="form1" runat="server">
-          <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:rgba(0, 25, 61, 0.9) !important;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background:rgba(0, 25, 61, 0.9) !important;">
   <a class="navbar-brand" href="#">
       <img src="images/logo.png" /></a>
 
@@ -177,7 +145,7 @@ nav li#user-info > span:after{
   <div class="collapse navbar-collapse" id="navbarNav">
      <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-check-circle"  aria-hidden="true"></i> Complementos de pago </b></asp:HyperLink>
+        <asp:HyperLink ID="HyperLink3" CssClass="text-white" Style="text-decoration:none; padding-right: 20px;"  runat="server" NavegateUrl="Listado.aspx" NavigateUrl="~/Listado.aspx"><b><i class="fa fa-check-circle" aria-hidden="true"></i> Complementos de pago </b></asp:HyperLink>
       </li>
       <li class="nav-item">
         <asp:HyperLink ID="HyperLink1" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="CSinRfc.aspx" NavigateUrl="~/CSinRfc.aspx"> &nbsp;<i class="fa fa-times-circle" aria-hidden="true"></i> Complementos sin RFC</asp:HyperLink>
@@ -186,10 +154,10 @@ nav li#user-info > span:after{
         <asp:HyperLink ID="HyperLink4" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="DownloadTxt.aspx" NavigateUrl="~/DownloadTxt.aspx"> &nbsp;<i class="fa fa-arrow-circle-down" aria-hidden="true"></i> Descargas</asp:HyperLink>
       </li>
          <li class="nav-item">
-        <asp:HyperLink ID="HyperLink5" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="QFListado.aspx" NavigateUrl="~/QFListado.aspx"> &nbsp;<i class="fa fa-trash" style="color:#f2c43e" aria-hidden="true"></i> Papelera</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink5" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="QFListado.aspx" NavigateUrl="~/QFListado.aspx"> &nbsp;<i class="fa fa-trash" aria-hidden="true"></i> Papelera</asp:HyperLink>
       </li>
          <li class="nav-item">
-        <asp:HyperLink ID="HyperLink6" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="FDPago.aspx" NavigateUrl="~/FDPago.aspx"> &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i> Forma de Pago</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink6" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="FDPago.aspx" NavigateUrl="~/FDPago.aspx"> &nbsp;<i class="fa fa-plus-square" style="color:#f2c43e" aria-hidden="true"></i> Forma de Pago</asp:HyperLink>
       </li>
     </ul>
     <%--<ul class="navbar-nav mr-auto ml-auto">
@@ -214,27 +182,24 @@ nav li#user-info > span:after{
         <div class="container-fluid mt-4">
                  <div class="card">
                   <div class="card-header">
-                    <b><i class="fa fa-plus-square btn btn-success" aria-hidden="true"></i> Papelera</b>
+                    <b><i class="fa fa-plus-square btn btn-success" aria-hidden="true"></i> Agregar cliente con forma de pago 02</b>
                   </div>
                   <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                  <label for="FileUpload1"><b>Folio</b></label>
-                                    <asp:TextBox ID="Folio" CssClass="form-control" runat="server" required="true"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="FValidator" runat="server" ErrorMessage="RequiredFielValidator" ControlToValidate="Folio" Display="Dynamic" ForeColor="Red" SetFocusOnError="True">* Campo requerido</asp:RequiredFieldValidator>
-                                </div>
-                                <div class="form-group col-sm-6">
+                                
+                                <div class="form-group col-sm-12">
                                   <label for="Billto"><b>Billto</b></label>
                                     <asp:TextBox ID="Billto" CssClass="form-control" runat="server" required="true"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="RequiredFielValidator" ControlToValidate="Billto" Display="Dynamic" ForeColor="Red" SetFocusOnError="True">* Campo requerido</asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group col-sm-12">
-                                  <asp:Button ID="Button1" runat="server" Text="Registrar" CssClass="btn btn-block btn-success mt-4" OnClick="Button1_Click" />
+                                  <asp:Button ID="Button1" runat="server" Text="Agregar" CssClass="btn btn-block btn-success mt-4" OnClick="Button1_Click" />
                                 </div>
                             </div>
-                        </div>
+                        </div><br /><br />
+                       
                         <hr />
                         
                                 
@@ -251,7 +216,7 @@ nav li#user-info > span:after{
                   </div>
 
                 </div>
-            <div class="card mt-4">
+                <div class="card mt-4">
                     <div class="card-header">
                         <b><i class="fa fa-list btn btn-success" aria-hidden="true"></i> Listado de clientes</b>
                     </div>
@@ -292,8 +257,9 @@ nav li#user-info > span:after{
                 </div>
         </div>
     </form>
-   <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
-    margin-top: 75vh;background:rgba(0, 25, 61, 0.9) !important;">
+    
+     <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50" style="position: relative;
+    margin-top: 70vh;background:rgba(0, 8, 20, 0.9) !important;">
     <div class="container text-center text-white">
         <a href="#form1" style="font-size:28px;text-decoration:none;color:white"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></a><br />
       <small>2022 Copyright &copy; TDR Soluciones Logísticas</small>

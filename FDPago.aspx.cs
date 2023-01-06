@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace CARGAR_EXCEL
 {
-    public partial class QFListado : System.Web.UI.Page
+    public partial class FDPago : System.Web.UI.Page
     {
         public facLabController facLabControler = new facLabController();
         protected void Page_Load(object sender, EventArgs e)
@@ -26,36 +26,36 @@ namespace CARGAR_EXCEL
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string numero = Folio.Text.Trim();
+            //string numero = Folio.Text.Trim();
             string billto = Billto.Text.Trim().ToUpper();
-            string folio = billto + numero;
+
             //string merror = "<br> <br>";
             //ScriptManager.RegisterStartupScript(this, GetType(), "Popup", "successalert("+merror+");", true);
             //string msg = "pariatur";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Factura timbrada ', 'success');setTimeout(function(){window.location.href ='WebForm1.aspx'}, 10000)", true);
+            //ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Factura timbrada ', 'success');setTimeout(function(){window.location.href ='Listado.aspx'}, 10000)", true);
             //pop(numero);
 
-            valida(folio);
+            valida(billto);
         }
 
-        public void valida(string folio)
+        public void valida(string billto)
         {
             //TextBox1.Value = folio;
-            facLabControler.Elist(folio);
-            string msg = "Se agrego el: " + folio;
-            ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Registro exitoso ', 'success');setTimeout(function(){window.location.href ='QFListado.aspx'}, 4000)", true);
+            facLabControler.IFpago(billto);
+            string msg = "Se agrego el billto: " + billto;
+            ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Registro exitoso ', 'success');setTimeout(function(){window.location.href ='FDPago.aspx'}, 5000)", true);
             //string msg = "Folio agregado:" + folio;
             //ScriptManager.RegisterStartupScript(this, GetType(), "displayalertmessage", "Showalert()", true);
         }
         private async Task okTralix()
         {
 
-            DataTable cargaStops = facLabControler.billtoPapelera();
+            DataTable cargaStops = facLabControler.billtoFp();
             int numCells = 2;
             int rownum = 0;
             foreach (DataRow item in cargaStops.Rows)
             {
-                string billtor = item["folio"].ToString();
+                string billtor = item["billto"].ToString();
                 TableRow r = new TableRow();
                 for (int i = 0; i < numCells; i++)
                 {
@@ -65,7 +65,7 @@ namespace CARGAR_EXCEL
                         HyperLink hp1 = new HyperLink();
                         hp1.ID = "hpIndex" + rownum.ToString();
                         hp1.Text = "<i class='fa fa-minus-square btn btn-danger' aria-hidden='true'></i>";
-                        hp1.NavigateUrl = "DeleteBilltoPapelera.aspx?idnum=" + item[i].ToString() + "&folio=" + billtor;
+                        hp1.NavigateUrl = "DeleteBilltoFp.aspx?idnum=" + item[i].ToString() + "&billto=" + billtor;
                         TableCell c = new TableCell();
                         c.Controls.Add(hp1);
                         r.Cells.Add(c);
