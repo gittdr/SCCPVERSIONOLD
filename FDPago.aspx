@@ -255,6 +255,7 @@ nav li#user-info > span:after{
                                 </div>
                     </div>
                 </div>
+            <div runat="server" id="divLoading" style="background-image:url(images/loading.gif);position:absolute;top:0;left:0;width:100%;height:100%;background-repeat:no-repeat;background-position:center;z-index:2000"></div>
         </div>
     </form>
     

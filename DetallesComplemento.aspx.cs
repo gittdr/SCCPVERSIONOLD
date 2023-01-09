@@ -9752,7 +9752,7 @@ namespace CARGAR_EXCEL
 
                 generadorTXTEstructura();
                 //facLabControler.Elist(txtFolio.Text);
-                string msg = "¡Se genero correctamente el TXT!";
+                string msg = "¡Se genero correctamente el TXT Vacio!";
                 ScriptManager.RegisterStartupScript(this, GetType(), "swal", "swal('" + msg + "', 'Success', 'success');setTimeout(function(){window.location.href ='DownloadTxt.aspx'}, 10000)", true);
 
 
