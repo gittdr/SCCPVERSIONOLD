@@ -73,7 +73,10 @@
         <asp:HyperLink ID="HyperLink5" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="QFListado.aspx" NavigateUrl="~/QFListado.aspx"> &nbsp;<i class="fa fa-trash" aria-hidden="true"></i> Papelera</asp:HyperLink>
       </li>
                       <li class="nav-item">
-        <asp:HyperLink ID="HyperLink6" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="FDPago.aspx" NavigateUrl="~/FDPago.aspx"> &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i> Forma de Pago</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink6" CssClass="text-white" Style="text-decoration:none;padding-right: 20px;"  runat="server" NavegateUrl="FDPago.aspx" NavigateUrl="~/FDPago.aspx"> &nbsp;<i class="fa fa-plus-square" aria-hidden="true"></i> Forma de Pago</asp:HyperLink>
+      </li>
+                      <li class="nav-item">
+        <asp:HyperLink ID="HyperLink7" CssClass="text-white" Style="text-decoration:none;"  runat="server" NavegateUrl="ListadoRCP.aspx" NavigateUrl="~/ListadoRCP.aspx"> &nbsp;<i class="fa fa-th-list" aria-hidden="true"></i> Reporte</asp:HyperLink>
       </li>
     </ul>
                 <%--<ul class="navbar-nav mr-auto ml-auto">
