@@ -20,6 +20,18 @@ namespace CARGAR_EXCEL.Controllers
         {
             return this.modelFact.getDatosCPAGDOC(identificador);
         }
+        public DataTable Reporte()
+        {
+            return this.modelFact.Reporte();
+        }
+        public DataTable ReporteP()
+        {
+            return this.modelFact.ReporteP();
+        }
+        public DataTable ReporteDetalle(string folio)
+        {
+            return this.modelFact.ReporteDetalle(folio);
+        }
         public DataTable getDatosCPAGDOCTR(string identificador)
         {
             return this.modelFact.getDatosCPAGDOCTR(identificador);

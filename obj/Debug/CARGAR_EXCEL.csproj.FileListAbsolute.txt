@@ -439,3 +439,13 @@ C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\FubarCoder.RestS
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\FubarCoder.RestSharp.Portable.HttpClient.xml
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\RestSharp.xml
 C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\System.IO.Compression.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\ClosedXML.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\DocumentFormat.OpenXml.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\ExcelNumberFormat.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\FastMember.Signed.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\System.IO.FileSystem.Primitives.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\System.IO.Packaging.dll
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\ClosedXML.pdb
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\ClosedXML.xml
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\DocumentFormat.OpenXml.xml
+C:\CartaPorteCargaMasiva\TralixComplementoPago\CARGAR_EXCEL\bin\ExcelNumberFormat.xml

@@ -249,6 +249,56 @@ namespace CARGAR_EXCEL.Models
             }
             return dataTablee;
         }
+        public DataTable Reporte()
+        {
+            DataTable dataTablee = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("SELECT folio FROM InsertCp ORDER BY id_num DESC", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTablee);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTablee;
+        }
+        public DataTable ReporteP()
+        {
+            DataTable dataTablee = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("SELECT folio,uuid,mensaje FROM NoRegCp ORDER BY id_num DESC", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTablee);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTablee;
+        }
         public DataTable Elist2(string identificador)
         {
 
@@ -388,6 +438,32 @@ namespace CARGAR_EXCEL.Models
                 {
                     selectCommand.CommandType = CommandType.Text;
                     selectCommand.Parameters.AddWithValue("@identificador", (object)identificador);
+                    using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
+                    {
+                        try
+                        {
+                            selectCommand.Connection.Open();
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                        catch (SqlException ex)
+                        {
+                            string message = ex.Message;
+                        }
+                    }
+                }
+            }
+            return dataTable;
+        }
+        public DataTable ReporteDetalle(string folio)
+        {
+            DataTable dataTable = new DataTable();
+            string cadena = @"Data source=172.24.16.112; Initial Catalog=TMWSuite; User ID=sa; Password=tdr9312;Trusted_Connection=false;MultipleActiveResultSets=true";
+            using (SqlConnection connection = new SqlConnection(cadena))
+            {
+                using (SqlCommand selectCommand = new SqlCommand("SELECT folio,uuid,segmento,serie,rorder,aplica,billto,totalinvoice,totalvcartaporte,estatus FROM InsertRegCp WHERE folio = @folio", connection))
+                {
+                    selectCommand.CommandType = CommandType.Text;
+                    selectCommand.Parameters.AddWithValue("@folio", (object)folio);
                     using (SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(selectCommand))
                     {
                         try
